@@ -1,6 +1,6 @@
 import longsword from './items.js';
 
-// NTS: node -r es mcharacters.js to allow imports in node.js
+// NTS: node -r esm mcharacters.js to allow imports in node.js
 // characters and their class extensions (fighter, etc)
 
 class Character {
