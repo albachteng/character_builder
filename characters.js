@@ -1,7 +1,7 @@
 // characters and their class extensions (fighter, etc)
 
 class Character {
-    constructor(name, level, race) {
+    constructor(name, level, race, subrace) {
         this.name = name; // string
         this.level = level; // number; important for class abilities later on
         this.items = []; // array of items, see 'item.js'; initialized empty
@@ -21,12 +21,23 @@ class Character {
             CHA: 10,
         };
         this.race = race; // string
+        this.subrace = subrace;
 
 // here we start the race section, which I think just has to be a part of the character creation
+// NTS: need to update to include subraces;
 
         if (race === 'dwarf') {
+            if (subrace === 'hill') {
+                this.abilityScore.WIS += 1;
+                this.MAXHP += 1 * this.level;
+            }
+            if (subrace === 'mountain') {
+                this.abilityScore.STR += 2;
+                this.proficiencies.push('light armor', 'medium armor',);
+            }
             this.abilityScore.CON += 2;
             this.languages.push('Dwarven');
+            this.size = 'medium';
             this.speed = 25;
             this.abilities.push({
                 name: 'Darkvision',
@@ -49,6 +60,22 @@ class Character {
                 'battleaxe', 'handaxe', 'throwing hammer', 'warhammer',
                 );
         }
+        if (race === 'human') {
+
+        }
+        if (race === 'elf') {
+            this.abilityScore.DEX += 2;
+            this.languages.push('elvish');
+            this.size = 'medium';
+            this.speed = 30;
+            this.abilities.push(
+                {
+                    name: 'Darkvision',
+                    description: 'Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.',
+                }
+            )
+        }
+        if (race === '')
     }
     getItems() {
         return this.items;
@@ -66,10 +93,11 @@ class Character {
 // character classes below
 
 class Fighter extends Character {
-    constructor(name, level, race) {
-        super(name, level, race);
+    constructor(name, level, race, subrace) {
+        super(name, level, race, subrace);
         this.hitDice = 10; // the TYPE of hit dice, not number. See hitDiceNumber property
-        this.HP = 10;
+        this.MAXHP += 10;
+        this.HP += 10;
         this.abilities.push(
             {
                 name: 'Second Wind',
@@ -85,6 +113,5 @@ class Fighter extends Character {
 
 // test subject
 
-const isho = new Fighter('Isho-Genni', 1, 'dwarf');
-
-console.log(isho);
+const isho = new Fighter('Isho-Genni', 1, 'dwarf', 'mountain');
+console.log(isho.proficiencies);
