@@ -1,6 +1,6 @@
 import longsword from './items.js';
 
-// NTS: node -r ems characters.js to allow imports in node.js
+// NTS: node -r es mcharacters.js to allow imports in node.js
 // characters and their class extensions (fighter, etc)
 
 class Character {
@@ -9,6 +9,7 @@ class Character {
         this.level = 1; // number; important for class abilities later on
         this.items = []; // array of items, see 'item.js'; initialized empty
         this.abilities = [];
+        this.proficiencyBonus = 2; // start at two, increases every third level?
         this.proficiencies = [];
         this.speed = 0;
         this.languages = ['Common'];
@@ -219,7 +220,13 @@ class Character {
         return this.items;
     }
     removeItem(item) {
-        if (this.items.find(item)) {
+        if (this.items.find((item) => {
+            if (item.name = item) {
+                return true;
+            } else {
+                return false;
+            }
+        })) {
             this.items.splice(this.items.indexOf(item), 1);
             this.encumberance -= item.weight; 
             return item;
@@ -231,7 +238,7 @@ class Character {
     }
     attack(item, stat) {
         let modifier = Math.floor((this.abilityScore[stat] - 10) / 2);
-        let attackRoll = 1 + (Math.random() * 20);
+        let attackRoll = 1 + (Math.floor(Math.random()* 20));
         console.log(`modifier = ${modifier}`);
         console.log(`attack roll = ${attackRoll}`);
         if (item.versatile && attackRoll === 20) {
@@ -282,9 +289,8 @@ class Fighter extends Character {
 const isho = new Fighter('Isho-Genni', 'elf', 'drow');
 isho.setAbilityScore('STR', 15);
 isho.addItem(longsword);
-isho.levelUp();
-isho.levelUp();
-isho.levelUp('DEX', 'STR');
 console.log(isho);
 console.log(isho.attack(longsword, 'STR'));
-
+console.log(isho.removeItem(longsword));
+console.log(isho.items);
+console.log(isho.encumberance);
