@@ -29,7 +29,6 @@ class Character {
         this.subrace = subrace;
 
 // here we start the race section, which I think just has to be a part of the character creation
-// NTS: need to update to include subraces;
 
         // DWARVES
 
@@ -154,6 +153,27 @@ class Character {
                     name: 'Bonus Language',
                     description: 'You can speak, read and write one additional language of your choice.'
                 }
+            )
+        }
+        if (race === 'goblin') {
+            this.abilityScore.DEX += 2;
+            this.abilityScore.CON++;
+            this.size = 'small';
+            this.speed += 30;
+            this.languages.push('Goblin');
+            this.abilities.push(
+                {
+                    name: 'Dakvision',
+                    description: 'You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.',
+                },
+                {
+                    name: 'Fury of the Small',
+                    description: 'When you damage a creature with an attack or a spell and the creature\'s size is larger than yours, you can cause the attack or spell to deal extra damage to the creature. The extra damage equals your level. One you use this trait, you can\'t use it again until you finish a long or short rest.',
+                },
+                {
+                    name: 'Nimble Escape',
+                    description: 'You can take the Disengage or Hide action as a bonus action on each of your turns.'
+                },
             )
         }
     }
