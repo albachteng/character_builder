@@ -1,4 +1,4 @@
-import longsword from './items.js';
+import armory from './items.js';
 
 // NTS: node -r esm mcharacters.js to allow imports in node.js
 // characters and their class extensions (fighter, etc)
@@ -8,10 +8,10 @@ class Character {
         this.name = name; // string
         this.level = 1; // number; important for class abilities later on
         this.items = []; // array of items, see 'item.js'; initialized empty
-        this.abilities = [];
+        this.abilities = []; // an array, maybe better as an object?
         this.proficiencyBonus = 2; // start at two, increases every third level?
-        this.proficiencies = [];
-        this.speed = 0;
+        this.proficiencies = []; // also might be better as an object... 
+        this.speed = 0; // start at zero and add to it based on race, class, abilities
         this.languages = ['Common'];
         this.encumberance = 0; // initialize to zero;
         this.hitDiceNumber = 1; // number of hit dice, type is determined by class 
@@ -241,11 +241,11 @@ class Character {
         let attackRoll = 1 + (Math.floor(Math.random()* 20));
         console.log(`modifier = ${modifier}`);
         console.log(`attack roll = ${attackRoll}`);
-        if (item.versatile && attackRoll === 20) {
+        if (item.properties.includes('versatile') && attackRoll === 20) {
             return [attackRoll + modifier, 2 * (item.twoHandAttack() + modifier)];
-        } else if (item.versatile && attackRoll !== 20) {
+        } else if (item.properties.includes('versatile') && attackRoll !== 20) {
             return [attackRoll + modifier, item.twoHandAttack() + modifier];
-        } else if (!item.versatile && attackRoll === 20) {
+        } else if (!item.properties.includes('versatile') && attackRoll === 20) {
             return [attackRoll + modifier, 2 * (item.attack() + modifier)];
         } else {
             return [attackRoll + modifier, item.attack() + modifier];
@@ -286,11 +286,15 @@ class Fighter extends Character {
 
 // test subject
 
-const isho = new Fighter('Isho-Genni', 'elf', 'drow');
+const isho = new Fighter('Isho-Genni', 'human', 'none');
 isho.setAbilityScore('STR', 15);
-isho.addItem(longsword);
+let spear = armory.weapons.spear;
+isho.addItem(spear);
 console.log(isho);
-console.log(isho.attack(longsword, 'STR'));
-console.log(isho.removeItem(longsword));
+console.log(isho.attack(spear, 'STR'));
+console.log(isho.attack(spear, 'STR'));
+console.log(isho.attack(spear, 'STR'));
+console.log(isho.attack(spear, 'STR'));
+console.log(isho.removeItem(spear));
 console.log(isho.items);
 console.log(isho.encumberance);

@@ -44,13 +44,152 @@
  }
 
  class Armor extends Item {
-     constructor(name, description, weight, price, AC) {
+     constructor(name, description, weight, price, AC, strength, stealth, type) {
          super(name, description, weight, price);
          this.AC = AC;
+         this.strength = strength;
+         this.stealth = stealth;
+         this.type = type;
      }
  }
 
  // ARMOR 
+
+ const padded = new Armor(
+     'Padded', //name
+     'Quilted layers of cloth and padding.', //desc
+     8, //weight
+     5, //price
+     11, //ac, not including dex modifier
+     0, //str
+     'disadvantage', //stl
+     'light', //type
+ )
+
+ const leather = new Armor(
+    'Leather', //name
+    'Stiffened leather chestpiece and pauldrons.', //desc
+    10, //weight
+    10, //price
+    11, //ac, not including dex modifier
+    0, //str
+    '', //stl
+    'light', //type
+)
+
+const studdedLeather = new Armor(
+    'Studded leather', //name
+    'Leather armor reinforced with close-set rivets or spikes.', //desc
+    13, //weight
+    45, //price
+    12, //ac, not including dex modifier
+    0, //str
+    '', //stl
+    'light', //type
+)
+
+const hide = new Armor(
+    'Hide Armor', //name
+    'Crude armor of thick furs and pelts.', //desc
+    12, //weight
+    10, //price
+    12, //ac, not including dex modifier
+    0, //str
+    '', //stl
+    'medium', //type NTS medium armor DEX bonus is maxed at 2;
+)
+
+const chainShirt = new Armor(
+    'Chain shirt', //name
+    'Interlocking metal links worn between layers of clothes or padding.', //desc
+    20, //weight
+    50, //price
+    13, //ac, not including dex modifier
+    0, //str
+    '', //stl
+    'medium', //type NTS medium armor DEX bonus is maxed at 2;
+)
+
+const scaleMail = new Armor(
+    'Scale mail', //name
+    'A leather coat, leggings and skirt covered with small, thin, overlapping metal plates.', //desc
+    45, //weight
+    50, //price
+    14, //ac, not including dex modifier
+    0, //str
+    'disadvantage', //stl
+    'medium', //type NTS medium armor DEX bonus is maxed at 2;
+)
+
+const breastplate = new Armor(
+    'Breastplate', //name
+    'A thin metal chest piece worn with flexible leather.', //desc
+    20, //weight
+    400, //price
+    14, //ac, not including dex modifier
+    0, //str
+    '', //stl
+    'medium', //type NTS medium armor DEX bonus is maxed at 2;
+)
+
+const halfPlate = new Armor(
+    'Half plate', //name
+    'Shaped metal plates cover most of the upper body, with simple leather-banded greaves to protect the shins.', //desc
+    40, // weight
+    750, // price
+    15, // ac, not including dex modifier
+    0, // str
+    'disadvantage', // stl
+    'medium', // type NTS medium armor DEX bonus is maxed at 2;
+)
+
+const ringMail = new Armor(
+    'Ring mail', //name
+    'Leather armor with heavy metal rings sewn into it. Inferior to chain mail, but cost-effective.', //desc
+    40, // weight
+    30, // price
+    14, // flat ac, overriding dex modifier
+    0, // str
+    'disadvantage', // stl
+    'heavy', // type NTS heavy adds no dex bonus;
+)
+
+const chainMail = new Armor(
+    'Chain mail', //name
+    'Interlocking metal rings make up a hood, shirt, skirt and gauntlets padded with quilted fabric.', //desc
+    55, // weight
+    75, // price
+    16, // flat ac, overriding dex modifier
+    13, // str
+    'disadvantage', // stl
+    'heavy', // type NTS heavy adds no dex bonus;
+)
+
+const splint = new Armor(
+    'Splint', //name
+    'Thin strips of shaped metal riveted to a backing of leather, with flexible chain linking to protect joints.', //desc
+    60, // weight
+    200, // price
+    17, // flat ac, overriding dex modifier
+    15, // str
+    'disadvantage', // stl
+    'heavy', // type NTS heavy adds no dex bonus;
+)
+
+const plate = new Armor(
+    'Plate', //name
+    'Shaped metal plates precisely interlocking to cover the entire body, including a helm with a visor, gauntlets, boots. Leather straps distribute the weight evenly over the body.', //desc
+    65, // weight
+    1500, // price
+    18, // flat ac, overriding dex modifier
+    15, // str
+    'disadvantage', // stl
+    'heavy', // type NTS heavy adds no dex bonus;
+)
+
+const shield = new Armor(
+    'Shield', 'A metal or reinforced-wood shield', 6, 10, 2, 0, '', 'shield',
+)
 
 // WEAPONS 
 // simple melee weapons 
@@ -275,7 +414,7 @@ const longsword = new Weapon(
     ['STR'], // STR or DEX
     [8, 10], // attack damage
     ['versatile'],
-); // versatile attack damage, if any
+); 
 
 const maul = new Weapon(
     'Maul',
@@ -445,13 +584,17 @@ const armory = {
         net, 
     },
     armor: {
-
+        padded, leather, studdedLeather,
+        hide, chainShirt, scaleMail,
+        breastplate, halfPlate, ringMail,
+        chainMail, splint, plate, 
+        shield,
     },
     items: {
 
     }, 
     potions: {
-        
+
     },
 }
 
