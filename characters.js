@@ -12,6 +12,7 @@ class Character {
         this.proficiencies = [];
         this.speed = 0;
         this.languages = ['Common'];
+        this.encumberance = 0; // initialize to zero;
         this.hitDiceNumber = 1; // number of hit dice, type is determined by class 
         this.hitDiceType = 0;
         this.MAXHP = 0; // starting HP determined by class
@@ -137,6 +138,7 @@ class Character {
             );
             this.proficiencies.push('perception',);
         }
+
         // HUMANS
         
         if (race === 'human') {
@@ -155,6 +157,9 @@ class Character {
                 }
             )
         }
+
+        // GOBLINS
+
         if (race === 'goblin') {
             this.abilityScore.DEX += 2;
             this.abilityScore.CON++;
@@ -174,15 +179,51 @@ class Character {
                     name: 'Nimble Escape',
                     description: 'You can take the Disengage or Hide action as a bonus action on each of your turns.'
                 },
-            )
+            );
         }
+
+        // MINOTAUR
+
+        if (this.race === 'minotaur') {
+            this.abilityScore.STR += 2;
+            this.abilityScore.CON ++;
+            this.speed += 30;
+            this.hornAttack = function() {
+                return 1 + Math.floor(Math.random() * 6) + Math.floor((this.abilityScore.STR - 10) / 2);
+            };
+            this.proficiencies.push('intimidation');
+            this.languages.push('Minotaur');
+            this.abilities.push(
+                {
+                    name: 'Goring Rush',
+                    description: 'Immediately after you use the Dash action on your turn and move at least as far as your speed, you can make one melee attack with your horns as a bonus action.', 
+                },
+                {
+                    name: 'Hammering Horns',
+                    description: `Immediately after you hit a creature with a melee attack with a melee attack as part of the Attack action on your turn, you can attempt to shove that creature with your horns using your reaction. The creature must be no more than one size larger than you and within 5 feet of you. It must make a Strength saving throw against a DC equal to 8 + your proficiency bonus + ${Math.floor((this.abilityScore.STR - 10)) / 2}. If it fails, you push it up to 5 feet away from you.`,
+                },
+                {
+                    name: 'Hybrid Nature', 
+                    description: 'You have two creature types: humanoid and monstrosity. You can be affected by a game effects if it works on either of your creature types.',
+                },
+            );
+        }
+
     }
     getItems() {
         return this.items;
     }
-    addItem(item) {
+    addItem(item) { // NTS this should also update encumberance
         this.items.push(item); // adds an item object to the items array
+        this.encumberance += item.weight;
         return this.items;
+    }
+    removeItem(item) {
+        if (this.items.find(item)) {
+            this.items.splice(this.items.indexOf(item), 1);
+            this.encumberance -= item.weight; 
+            return item;
+        } 
     }
     setAbilityScore(stat, num) { // takes a stat key and a number
         this.abilityScore[stat] = num;
@@ -190,7 +231,7 @@ class Character {
     }
     attack(item, stat) {
         let modifier = Math.floor((this.abilityScore[stat] - 10) / 2);
-        let attackRoll = Math.floor(Math.random() * 20) + 1;
+        let attackRoll = 1 + (Math.random() * 20);
         console.log(`modifier = ${modifier}`);
         console.log(`attack roll = ${attackRoll}`);
         if (item.versatile && attackRoll === 20) {
