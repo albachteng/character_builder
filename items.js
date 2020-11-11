@@ -13,9 +13,10 @@
  }
 
  class Weapon extends Item {
-     constructor(name, description, weight, damage, versatile) {
+     constructor(name, description, modifier, weight, damage, versatile) {
          super(name, description, weight);
          this.versatile = versatile;
+         this.modifier = modifier;
          this.damage = damage; // might have to represent this with more than one property
          };
          attack() {
@@ -41,6 +42,6 @@
      }
  }
 
-const longsword = new Weapon('Longsword', 'A one or two-handed weapon dealing slashing damage', 3, 8, 10);
+const longsword = new Weapon('Longsword', 'A one or two-handed weapon dealing slashing damage', ['STR'], 3, 8, 10);
 
  export default longsword;

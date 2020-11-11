@@ -168,13 +168,17 @@ class Character {
         this.abilityScore[stat] = num;
         return this.abilityScore;
     }
-    attack(item, versatile) {
-        let modifier = Math.floor((this.abilityScore.STR - 10) / 2);
+    attack(item, stat) {
+        let modifier = Math.floor((this.abilityScore[stat] - 10) / 2);
         let attackRoll = Math.floor(Math.random() * 20) + 1;
         console.log(`modifier = ${modifier}`);
         console.log(`attack roll = ${attackRoll}`);
-        if (versatile) {
+        if (item.versatile && attackRoll === 20) {
+            return [attackRoll + modifier, 2 * (item.twoHandAttack() + modifier)];
+        } else if (item.versatile && attackRoll !== 20) {
             return [attackRoll + modifier, item.twoHandAttack() + modifier];
+        } else if (!item.versatile && attackRoll === 20) {
+            return [attackRoll + modifier, 2 * (item.attack() + modifier)];
         } else {
             return [attackRoll + modifier, item.attack() + modifier];
         }
@@ -221,3 +225,5 @@ isho.levelUp();
 isho.levelUp();
 isho.levelUp('DEX', 'STR');
 console.log(isho);
+console.log(isho.attack(longsword, 'STR'));
+
