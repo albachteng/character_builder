@@ -255,6 +255,25 @@ class Character {
             return [attackRoll + modifier, weapon.attack() + modifier];
         }
     }
+    equip(armor) {
+        let dexMod = dice.mod(this.abilityScore.DEX);
+        if (armor.strength > this.abilityScore.STR) {
+            return 'Insufficient strength.';
+        } else if (armor.type === 'light') {
+            this.AC = armor.AC + dexMod;
+        } else if (armor.type === 'medium') {
+            if (dexMod > 2) {
+                this.AC = armor.AC + 2;
+            } else if (dexMod <= 2) {
+                this.AC = armor.AC + dexMod;
+            }
+        } else if (armor.type === 'heavy') {
+            this.AC = armor.AC;
+        } else if (armor.type === 'shield') {
+            this.AC += 2;
+        }
+        return this.AC;
+    }
     levelUp(attribute1, attribute2) {
         this.level++;
         this.hitDiceNumber++;
@@ -296,10 +315,7 @@ let spear = armory.weapons.spear;
 let shield = armory.armor.shield;
 isho.addItem(spear);
 isho.addItem(shield);
+isho.equip(shield);
+isho.equip(armory.armor.plate);
 console.log(isho);
-console.log(isho.attack(spear, 'STR'));
-console.log(isho.attack(spear, 'STR'));
-console.log(isho.attack(spear, 'STR'));
-console.log(isho.attack(spear, 'STR'));
-console.log(isho.items);
 console.log(isho.encumberance);
