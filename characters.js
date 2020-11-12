@@ -1,7 +1,10 @@
 import armory from './items.js';
+import dice from './dice.js';
 
-// NTS: node -r esm mcharacters.js to allow imports in node.js
+// NTS: node -r esm characters.js to allow ECMA Script Module imports in node.js
 // characters and their class extensions (fighter, etc)
+
+// Character class
 
 class Character {
     constructor(name, race, subrace) {
@@ -37,7 +40,7 @@ class Character {
         if (race === 'dwarf') {
             if (subrace === 'hill') {
                 this.abilityScore.WIS += 1;
-                this.MAXHP += 1 * this.level;
+                this.MAXHP += 1 * this.level; // NTS this has to run every level up
             }
             if (subrace === 'mountain') {
                 this.abilityScore.STR += 2;
@@ -190,7 +193,7 @@ class Character {
             this.abilityScore.CON ++;
             this.speed += 30;
             this.hornAttack = function() {
-                return 1 + Math.floor(Math.random() * 6) + Math.floor((this.abilityScore.STR - 10) / 2);
+                return dice.d(6) + dice.mod(this.abilityScore.STR);
             };
             this.proficiencies.push('intimidation');
             this.languages.push('Minotaur');
@@ -201,7 +204,7 @@ class Character {
                 },
                 {
                     name: 'Hammering Horns',
-                    description: `Immediately after you hit a creature with a melee attack with a melee attack as part of the Attack action on your turn, you can attempt to shove that creature with your horns using your reaction. The creature must be no more than one size larger than you and within 5 feet of you. It must make a Strength saving throw against a DC equal to 8 + your proficiency bonus + ${Math.floor((this.abilityScore.STR - 10)) / 2}. If it fails, you push it up to 5 feet away from you.`,
+                    description: `Immediately after you hit a creature with a melee attack with a melee attack as part of the Attack action on your turn, you can attempt to shove that creature with your horns using your reaction. The creature must be no more than one size larger than you and within 5 feet of you. It must make a Strength saving throw against a DC equal to 8 + your proficiency bonus + ${dice.mod(this.abilityScore.STR)}. If it fails, you push it up to 5 feet away from you.`,
                 },
                 {
                     name: 'Hybrid Nature', 
@@ -210,35 +213,36 @@ class Character {
             );
         }
 
-    }
+    } // end of constructor, methods begin below
+
     getItems() {
         return this.items;
     }
-    addItem(item) { // NTS this should also update encumberance
+    addItem(item) {
         this.items.push(item); // adds an item object to the items array
         this.encumberance += item.weight;
         return this.items;
     }
     removeItem(item) {
-        if (this.items.find((item) => {
-            if (item.name = item) {
-                return true;
-            } else {
-                return false;
-            }
-        })) {
+        if (this.items.includes(item)) {
             this.items.splice(this.items.indexOf(item), 1);
             this.encumberance -= item.weight; 
             return item;
         } 
     }
-    setAbilityScore(stat, num) { // takes a stat key and a number
-        this.abilityScore[stat] = num;
+    getAbilityScores() {
         return this.abilityScore;
     }
+    getAbilityScore(stat) {
+        return this.abilityScore[stat];
+    }
+    setAbilityScore(stat, num) { // takes a stat key and a number
+        this.abilityScore[stat] = num;
+        return this.abilityScore[stat];
+    }
     attack(item, stat) {
-        let modifier = Math.floor((this.abilityScore[stat] - 10) / 2);
-        let attackRoll = 1 + (Math.floor(Math.random()* 20));
+        let modifier = dice.mod(this.abilityScore[stat]);
+        let attackRoll = dice.d(20);
         console.log(`modifier = ${modifier}`);
         console.log(`attack roll = ${attackRoll}`);
         if (item.properties.includes('versatile') && attackRoll === 20) {
@@ -254,7 +258,7 @@ class Character {
     levelUp(attribute1, attribute2) {
         this.level++;
         this.hitDiceNumber++;
-        this.MAXHP += Math.floor(Math.random() * this.hitDiceType);
+        this.MAXHP += dice.d(this.hitDiceType);
         this.HP = this.MAXHP;
         if (this.level % 4 === 0) {
             this.abilityScore[attribute1]++;
@@ -289,6 +293,7 @@ class Fighter extends Character {
 const isho = new Fighter('Isho-Genni', 'human', 'none');
 isho.setAbilityScore('STR', 15);
 let spear = armory.weapons.spear;
+let shield = armory.armor.shield;
 isho.addItem(spear);
 console.log(isho);
 console.log(isho.attack(spear, 'STR'));
