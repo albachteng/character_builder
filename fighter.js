@@ -30,6 +30,7 @@ class Fighter extends Character {
             'light armor', 'medium armor', 'heavy armor', 'shields', 'simple weapons', 'martial weapons',
         );
         this.savingThrowsProficiencies = ['STR', 'CON',];
+        console.log(`Fighter ${this.name} initialized at level 1. Set attributes and use setFightingStyle() to continue.`);
     }
     // end of constructor, begin methods below
     levelUp(attribute1, attribute2) {
@@ -37,10 +38,19 @@ class Fighter extends Character {
         this.hitDiceNumber++; // increase hitDice number by 1;
         this.MAXHP += dice.d(this.hitDiceType); // automatically rolls HP
         this.HP = this.MAXHP; // full HP upon level up
-        if (this.level % 4 === 0) {
+        if (this.level === 4 || this.level === 6 || this.level === 8 || this.level === 12 || this.level === 14 || this.level === 16 || this.level ===19) {
             this.abilityScore[attribute1]++;
             this.abilityScore[attribute2]++;
         }
+    }
+    getAbilities() {
+        let available = [];
+        for (let i = 0; i < this.abilities.length; i++) {
+            if (this.abilities[i].requiredLevel <= this.level) {
+                available.push(this.abilities[i]);
+            }
+        }
+        return available;
     }
     addFightingStyle(fightingStyle) {
         switch(fightingStyle) {
@@ -109,12 +119,4 @@ class Fighter extends Character {
 // test subject
 
 const isho = new Fighter('Isho-Genni', 'human', 'none');
-isho.setAbilityScore('STR', 15);
-let spear = armory.weapons.spear;
-let shield = armory.armor.shield;
-isho.addItem(spear);
-isho.addItem(shield);
-isho.equip(shield);
-isho.equip(armory.armor.plate);
-console.log(isho);
-console.log(isho.encumberance);
+isho.setFightingStyle('Great Weapon Fighting');
