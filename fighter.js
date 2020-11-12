@@ -3,7 +3,7 @@ import Character from './characters.js';
 import dice from './dice.js';
 
 class Fighter extends Character {
-    constructor(name, race, subrace, fightingStyle) {
+    constructor(name, race, subrace) {
         super(name, race, subrace);
         this.hitDiceType += 10; // the VALUE of hit dice, not number. See hitDiceNumber property
         this.MAXHP += 10;
@@ -311,20 +311,37 @@ class Fighter extends Character {
             
         }
     }
-    addCombatManeuvers(...name) {
-        this.combatManeuvers.forEach((maneuver) => {
-            if (maneuver.name === name[name.length]) {
-                this.abilities.push(maneuver);
-            }
-        })
+    addCombatManeuvers() {
+        for (let j = 0; j < arguments.length; j++) {
+            for (let i = 0; i < this.combatManeuvers.length; i++) {
+                if (this.combatManeuvers[i].name === arguments[j]) {
+                    this.abilities.push(this.combatManeuvers[i]);
+                }}
+        }}
     }
-}
 
 // test subject
 
 const isho = new Fighter('Isho-Genni', 'human', 'none');
-isho.setFightingStyle('Great Weapon Fighting');
+isho.setFightingStyle('Defense');
 isho.levelUp();
 isho.levelUp();
-isho.addCombatManeuvers(['Parry']);
-console.log(isho.abilities);
+isho.levelUp();
+isho.levelUp();
+isho.levelUp();
+isho.levelUp();
+isho.addMartialArchetype('Battle Master');
+isho.setAbilityScore('STR', 18);
+isho.setAbilityScore('DEX', 15);
+isho.setAbilityScore('CON', 16);
+isho.setAbilityScore('INT', 6);
+isho.setAbilityScore('WIS', 10);
+isho.setAbilityScore('CHA', 14);
+isho.addCombatManeuvers('Disarming Attack', 'Riposte', 'Menacing Attack', "Commander's Strike", "Distracting Strike");
+isho.addItem(armory.weapons.spear);
+isho.addItem(armory.armor.scaleMail);
+isho.addItem(armory.armor.shield);
+isho.addItem(armory.weapons.shortbow);
+isho.equip(armory.armor.scaleMail);
+isho.equip(armory.armor.shield);
+console.log(isho);
