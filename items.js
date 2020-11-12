@@ -1,4 +1,6 @@
- class Item {
+import dice from './dice.js';
+
+class Item {
     constructor(name, description, weight, price) {
         this.name = name; // string;
         this.description = description; // string;
@@ -21,22 +23,22 @@
          this.properties = properties; // array of properties
         };
          attack() {
-            let attack = Math.floor(Math.random() * this.damage[0]) + 1;
-            console.log(`attack = ${attack}`);
+            let damage = dice.d(this.damage[0]);
+            console.log(`attack = ${damage}`);
             if (this.properties.includes('two-handed')) {
                 return this.twoHandAttack();
             } else {
-                return attack;
+                return damage;
             }
         }
         twoHandAttack() {
             if (this.damage[1]) {
-                let attack = Math.floor(Math.random() * this.damage[1]) + 1;
+                let damage = dice.d(this.damage[1]);
                 if (this.properties.includes('multiple dice')) {
-                    attack *= 2;
+                    damage *= 2;
                 }
-                console.log(`attack = ${attack}`);
-                return attack;
+                console.log(`attack = ${damage}`);
+                return damage;
             } else {
                 return this.attack();
             }
@@ -598,6 +600,6 @@ const armory = {
     },
 }
 
-console.log(armory.weapons.dagger);
+console.log(dagger.attack());
 
  export default armory;

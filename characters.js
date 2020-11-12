@@ -240,19 +240,19 @@ class Character {
         this.abilityScore[stat] = num;
         return this.abilityScore[stat];
     }
-    attack(item, stat) {
+    attack(weapon, stat) {
         let modifier = dice.mod(this.abilityScore[stat]);
         let attackRoll = dice.d(20);
         console.log(`modifier = ${modifier}`);
         console.log(`attack roll = ${attackRoll}`);
-        if (item.properties.includes('versatile') && attackRoll === 20) {
-            return [attackRoll + modifier, 2 * (item.twoHandAttack() + modifier)];
-        } else if (item.properties.includes('versatile') && attackRoll !== 20) {
-            return [attackRoll + modifier, item.twoHandAttack() + modifier];
-        } else if (!item.properties.includes('versatile') && attackRoll === 20) {
-            return [attackRoll + modifier, 2 * (item.attack() + modifier)];
+        if (weapon.properties.includes('versatile') && attackRoll === 20) {
+            return [attackRoll + modifier, 2 * (weapon.twoHandAttack() + modifier)];
+        } else if (weapon.properties.includes('versatile') && attackRoll !== 20) {
+            return [attackRoll + modifier, weapon.twoHandAttack() + modifier];
+        } else if (!weapon.properties.includes('versatile') && attackRoll === 20) {
+            return [attackRoll + modifier, 2 * (weapon.attack() + modifier)];
         } else {
-            return [attackRoll + modifier, item.attack() + modifier];
+            return [attackRoll + modifier, weapon.attack() + modifier];
         }
     }
     levelUp(attribute1, attribute2) {
@@ -295,11 +295,11 @@ isho.setAbilityScore('STR', 15);
 let spear = armory.weapons.spear;
 let shield = armory.armor.shield;
 isho.addItem(spear);
+isho.addItem(shield);
 console.log(isho);
 console.log(isho.attack(spear, 'STR'));
 console.log(isho.attack(spear, 'STR'));
 console.log(isho.attack(spear, 'STR'));
 console.log(isho.attack(spear, 'STR'));
-console.log(isho.removeItem(spear));
 console.log(isho.items);
 console.log(isho.encumberance);
