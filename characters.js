@@ -271,6 +271,15 @@ class Character {
         this.abilityScore[stat] = num;
         return this.abilityScore[stat];
     }
+    getAbilities() {
+        let available = [];
+        for (let i = 0; i < this.abilities.length; i++) {
+            if (this.abilities[i].requiredLevel <= this.level) {
+                available.push(this.abilities[i]);
+            }
+        }
+        return available;
+    }
     attack(weapon, stat, twoHand) {
         let modifier = dice.mod(this.abilityScore[stat]);
         let attackRoll = dice.d(20);
