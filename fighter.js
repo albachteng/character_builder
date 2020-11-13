@@ -149,6 +149,9 @@ class Fighter extends Character {
         this.level++;
         this.hitDiceNumber++; // increase hitDice number by 1;
         this.MAXHP += dice.d(this.hitDiceType); // automatically rolls HP
+        if (this.subrace === 'hill') {
+            this.MAXHP++;
+        }
         this.HP = this.MAXHP; // full HP upon level up
         if (this.level === 4 || this.level === 6 || this.level === 8 || this.level === 12 || this.level === 14 || this.level === 16 || this.level ===19) {
             this.abilityScore[attribute1]++;

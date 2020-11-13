@@ -1,5 +1,6 @@
 import armory from './items.js';
 import dice from './dice.js';
+import races from './races.js';
 
 // NTS: node -r esm characters.js to allow ECMA Script Module imports in node.js
 // characters and their class extensions (fighter, etc)
@@ -22,7 +23,7 @@ class Character {
         this.MAXHP = 0; // starting HP determined by class
         this.HP = 0; // current HP determined by class
         this.AC = 10; // partly determined by items; w/out armor or shield 10+DEX
-        this.abilityScore = { // object, start all stats at 10
+        this.abilityScore = { // object, start all stats at 10??
             STR: 10,
             DEX: 10,
             CON: 10,
@@ -44,36 +45,14 @@ class Character {
             }
             if (subrace === 'mountain') {
                 this.abilityScore.STR += 2;
-                this.proficiencies.push('light armor', 'medium armor',);
+                this.proficiencies.push(...races.hillDwarf.proficiencies);
             }
             this.abilityScore.CON += 2;
             this.languages.push('Dwarven');
             this.size = 'medium';
             this.speed += 25;
-            this.abilities.push({
-                name: 'Darkvision',
-                description: 'Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.',
-                requiredLevel: 1,
-            },
-            {
-                name: 'Dwarven Resilience',
-                description: 'You have advantage on saving throws against poison, and you have resistance against poison damage.',
-                requiredLevel: 1,
-            },
-            {
-                name: 'Stonecunning', 
-                description: 'Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.',
-                requiredLevel: 1,
-            },
-            {
-                name: 'Tool Proficiency',
-                description: 'ToolProficiency. You gain proficiency with the artisan’s tools of your choice: smith’s tools, brewer’s supplies, or mason’s tools.',
-                requiredLevel: 1,
-            }
-            )
-            this.proficiencies.push(
-                'battleaxe', 'handaxe', 'throwing hammer', 'warhammer',
-                );
+            this.abilities.push(...races.dwarf.abilities);
+            this.proficiencies.push(...races.dwarf.proficiencies);
         }
 
         // ELVES
@@ -81,90 +60,26 @@ class Character {
         if (race === 'elf') {
             if (this.subrace === 'high') {
                 this.abilityScore.INT += 1;
-                this.proficiencies.push(
-                    'longsword', 'shortsword', 'shortbow', 'longbow',
-                );
-                this.abilities.push(
-                    {
-                        name: 'Cantrip',
-                        description: 'You know one cantrip of your choice from the wizard spell list. Intelligence is your spellcasting ability for it.',
-                        requiredLevel: 1,
-                    },
-                    {
-                        name: 'Extra Language',
-                        description: 'You can speak, read, and write one extra language of your choice.',
-                        requiredLevel: 1,
-                    },
-                )
+                this.proficiencies.push(...races.highElf.proficiencies);
+                this.abilities.push(...races.highElf.abilities);
             }
             if (this.subrace === 'wood') {
                 this.abilityScore.WIS += 1;
-                this.proficiencies.push(
-                    'longsword', 'shortsword', 'shortbow', 'longbow',
-                );
+                this.proficiencies.push(...races.woodElf.proficiencies);
                 this.speed += 5;
-                this.abilities.push(
-                    {
-                        name: 'Mask of the Wild',
-                        description: 'You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.',
-                        requiredLevel: 1,
-                    },
-                );
+                this.abilities.push(...races.woodElf.abilities);
             }
             if (this.subrace === 'drow') {
                 this.abilityScore.CHA += 1;
-                this.abilities.push(
-                    {
-                        name: 'Superior Darkvision',
-                        description: 'Your darkvision has a radius of 120 feet.', 
-                        requiredLevel: 1,
-                    },
-                    {
-                        name: 'Sunlight Sensitivity', 
-                        description: 'You have disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are trying to perceive is in direct sunlight.',
-                        requiredLevel: 1,
-                    },
-                    {
-                        name: 'Drow Magic',
-                        description: 'You know the dancing lights cantrip. When you reach 3rd level, you can cast the faerie fire spell once per day. When you reach 5th level, you can also cast the darkness spell once per day. Charisma is your spellcasting ability for this spell.',
-                        requiredLevel: 1,
-                    },
-                    {
-                        name: 'Drow Magic 2',
-                        description: 'When you reach 3rd level, you can cast the faerie fire spell once per day. Charisma is your spellcasting ability for this spell.',
-                        requiredLevel: 3,
-                    },
-                    {
-                        name: 'Drow Magic 3',
-                        description: 'When you reach 5th level, you can  cast the darkness spell once per day. Charisma is your spellcasting ability for this spell.',
-                        requiredLevel: 5,
-                    },
-                    
-                );
-                this.proficiencies.push('rapier', 'shortsword', 'hand crossbow',);
+                this.abilities.push(...races.drow.abilities);
+                this.proficiencies.push(...races.drow.proficiencies);
             }
             this.abilityScore.DEX += 2;
             this.languages.push('Elvish');
             this.size = 'medium';
             this.speed += 30;
-            this.abilities.push(
-                {
-                    name: 'Darkvision',
-                    description: 'Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.',
-                    requiredLevel: 1,
-                },
-                {
-                    name: 'Fey Ancestry',
-                    description: 'You have advantage on saving throws against being charmed, and magic can’t put you to sleep.',
-                    requiredLevel: 1,
-                },
-                {
-                    name: 'Trance', 
-                    description: 'Elvesdon’tneedtosleep.Instead,they meditate deeply, remaining semiconscious, for 4 hours a day. While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.',
-                    requiredLevel: 1,
-                },
-            );
-            this.proficiencies.push('perception',);
+            this.abilities.push(...races.elf.abilities);
+            this.proficiencies.push(...races.elf.proficiencies);
         }
 
         // HUMANS
