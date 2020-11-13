@@ -1,3 +1,5 @@
+import dice from './dice.js';
+
 const races = {
     dwarf: {
         abilities: [
@@ -160,7 +162,7 @@ const races = {
             },
             {
                 name: 'Hammering Horns',
-                description: `Immediately after you hit a creature with a melee attack with a melee attack as part of the Attack action on your turn, you can attempt to shove that creature with your horns using your reaction. The creature must be no more than one size larger than you and within 5 feet of you. It must make a Strength saving throw against a DC equal to 8 + your proficiency bonus (${this.proficiencyBonus})+ your STR modifier (${dice.mod(this.abilityScore.STR)}). If it fails, you push it up to 5 feet away from you.`,
+                description: 'Immediately after you hit a creature with a melee attack with a melee attack as part of the Attack action on your turn, you can attempt to shove that creature with your horns using your reaction. The creature must be no more than one size larger than you and within 5 feet of you. It must make a Strength saving throw against a DC equal to 8 + your proficiency bonus + your STR modifier. If it fails, you push it up to 5 feet away from you.',
                 requiredLevel: 1,
             },
             {

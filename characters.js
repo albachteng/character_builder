@@ -1,6 +1,7 @@
 import armory from './items.js';
 import dice from './dice.js';
 import races from './races.js';
+import classes from './abilities.js';
 
 // NTS: node -r esm characters.js to allow ECMA Script Module imports in node.js
 // characters and their class extensions (fighter, etc)
@@ -8,7 +9,7 @@ import races from './races.js';
 // Character class
 
 class Character {
-    constructor(name, race, subrace) {
+    constructor(name, race, subrace, STR, DEX, CON, INT, WIS, CHA) {
         this.name = name; // string
         this.level = 1; // number; important for class abilities later on
         this.items = []; // array of items, see 'item.js'; initialized empty
@@ -18,19 +19,22 @@ class Character {
         this.speed = 0; // start at zero and add to it based on race, class, abilities
         this.languages = ['Common'];
         this.encumberance = 0; // initialize to zero;
-        this.hitDiceNumber = 1; // number of hit dice, type is determined by class 
-        this.hitDiceType = 0;
-        this.MAXHP = 0; // starting HP determined by class
-        this.HP = 0; // current HP determined by class
-        this.AC = 10; // partly determined by items; w/out armor or shield 10+DEX
+        this.HP = { // the HP object, keeps all the related ideas together
+            current: 0,
+            max: 0,
+            hitDice: 1,
+            hitDiceType: 0,
+            temporary: 0,
+        }; 
         this.abilityScore = { // object, start all stats at 10??
-            STR: 10,
-            DEX: 10,
-            CON: 10,
-            INT: 10,
-            WIS: 10,
-            CHA: 10,
+            STR: STR,
+            DEX: DEX,
+            CON: CON,
+            INT: INT,
+            WIS: WIS,
+            CHA: CHA,
         };
+        this.AC = 10 + dice.mod(this.abilityScore.DEX); // partly determined by items; w/out armor or shield 10+DEX
         this.race = race; // string
         this.subrace = subrace;
 
@@ -41,7 +45,7 @@ class Character {
         if (race === 'dwarf') {
             if (subrace === 'hill') {
                 this.abilityScore.WIS += 1;
-                this.MAXHP += 1 * this.level; // NTS this has to run every level up
+                this.HP.max += 1; // NTS this has to run every level up
             }
             if (subrace === 'mountain') {
                 this.abilityScore.STR += 2;
@@ -161,6 +165,12 @@ class Character {
 
     } // end of constructor, methods begin below
 
+    addArchetype(archetype) {
+        if (this.level === 3) {
+            this.archetype = archetype;
+            this.abilities.push(...classes[archetype].abilities);
+            this.proficiencies.push(...classes[archetype].proficiencies);
+        }}
     getItems() {
         return this.items;
     }
@@ -186,7 +196,7 @@ class Character {
         this.abilityScore[stat] = num;
         return this.abilityScore[stat];
     }
-    getAbilities() {
+    getAbilities() { // returns only abilities the character can use at current level;
         let available = [];
         for (let i = 0; i < this.abilities.length; i++) {
             if (this.abilities[i].requiredLevel <= this.level) {
@@ -194,6 +204,18 @@ class Character {
             }
         }
         return available;
+    }
+    showCharacter() {
+        return `
+        ${this.name} level ${this.level} ${this.race}
+        HP: ${this.HP.current + this.HP.temporary} / ${this.HP.max} AC: ${this.AC} Speed: ${this.speed}
+        STR: ${this.abilityScore.STR} (+${dice.mod(this.abilityScore.STR)})
+        DEX: ${this.abilityScore.DEX} (+${dice.mod(this.abilityScore.DEX)})
+        CON: ${this.abilityScore.CON} (+${dice.mod(this.abilityScore.CON)})
+        INT: ${this.abilityScore.INT} (+${dice.mod(this.abilityScore.INT)})
+        WIS: ${this.abilityScore.WIS} (+${dice.mod(this.abilityScore.WIS)})
+        CHA: ${this.abilityScore.CHA} (+${dice.mod(this.abilityScore.CHA)})
+        `
     }
     attack(weapon, stat, twoHand) {
         let modifier = dice.mod(this.abilityScore[stat]);
@@ -234,3 +256,7 @@ class Character {
 // character classes below
 
 export default Character;
+
+const isho = new Character("Isho", 'human', 'none', 17, 14, 15, 5, 9, 13);
+isho.equip(armory.armor.scaleMail);
+console.log(isho.showCharacter());
