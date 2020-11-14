@@ -19,6 +19,7 @@ class Character {
         this.speed = 0; // start at zero and add to it based on race, class, abilities
         this.languages = ['Common'];
         this.encumberance = 0; // initialize to zero;
+        this.resistances = []; // empty array of strings
         this.HP = { // the HP object, keeps all the related ideas together
             current: 0,
             max: 0,
@@ -144,28 +145,32 @@ class Character {
             };
             this.proficiencies.push('intimidation');
             this.languages.push('Minotaur');
-            this.abilities.push(
-                {
-                    name: 'Goring Rush',
-                    description: 'Immediately after you use the Dash action on your turn and move at least as far as your speed, you can make one melee attack with your horns as a bonus action.', 
-                    requiredLevel: 1,
-                },
-                {
-                    name: 'Hammering Horns',
-                    description: `Immediately after you hit a creature with a melee attack with a melee attack as part of the Attack action on your turn, you can attempt to shove that creature with your horns using your reaction. The creature must be no more than one size larger than you and within 5 feet of you. It must make a Strength saving throw against a DC equal to 8 + your proficiency bonus (${this.proficiencyBonus})+ your STR modifier (${dice.mod(this.abilityScore.STR)}). If it fails, you push it up to 5 feet away from you.`,
-                    requiredLevel: 1,
-                },
-                {
-                    name: 'Hybrid Nature', 
-                    description: 'You have two creature types: humanoid and monstrosity. You can be affected by a game effects if it works on either of your creature types.',
-                    requiredLevel: 1,
-                },
-            );
+            this.abilities.push(...races.minotaur.abilities);
+        }
+        if (this.race === 'dragonborn') {
+            this.abilityScore.STR += 2;
+            this.abilityScore.CHA += 1;
+            this.speed += 30;
+            this.languages.push('Draconic');
+            this.abilities.push(...races.dragonborn.abilities);
+            let breath = this.abilities.find((ability) => {
+                if (ability.name === 'Breath Weapon') {
+                    return true;
+                };
+            });
+            let ancestry = races.dragonborn.ancestry.find((ancestor) => {
+                if (this.subrace === ancestor.dragon) {
+                    return true;
+                };
+            }); 
+            breath.description += ancestry.breathWeapon;
+            this.resistances.push(ancestry.damageType);
+            }
         }
 
-    } // end of constructor, methods begin below
+        // end of constructor, methods begin below
 
-    addArchetype(archetype) {
+    setArchetype(archetype) {
         if (this.level === 3) {
             this.archetype = archetype;
             this.abilities.push(...classes[archetype].abilities);
@@ -257,6 +262,9 @@ class Character {
 
 export default Character;
 
-const isho = new Character("Isho", 'human', 'none', 17, 14, 15, 5, 9, 13);
+const isho = new Character("Isho", 'dragonborn', 'bronze', 17, 14, 15, 5, 9, 13);
 isho.equip(armory.armor.scaleMail);
 console.log(isho.showCharacter());
+
+console.log(isho.getAbilities());
+console.log(isho.resistances);

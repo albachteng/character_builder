@@ -34,7 +34,7 @@ class Fighter extends Character {
     levelUp(attribute1, attribute2) {
         this.level++;
         this.HP.hitDice++; // increase hitDice number by 1;
-        this.HP.max += dice.d(this.HP.hitDiceType); // automatically rolls HP
+        this.HP.max += dice.d(this.HP.hitDiceType) + dice.mod(this.abilityScore.CON); // automatically rolls HP
         if (this.subrace === 'hill') {
             this.HP.max++;
         }
@@ -129,7 +129,7 @@ class Fighter extends Character {
 
 const isho = new Fighter('Isho-Genni', 'human', 'none', 17, 14, 15, 5, 9, 13);
 isho.setFightingStyle('Defense');
-isho.addArchetype('Battle Master');
+isho.setArchetype('Battle Master');
 isho.levelUp();
 isho.levelUp();
 isho.levelUp();

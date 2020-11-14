@@ -175,6 +175,90 @@ const races = {
             'intimidation',
         ],
     },
+    dragonborn: {
+        abilities: [
+            {
+                name: 'Draconic Ancestry',
+                description: 'You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Breath Weapon',
+                description: 'You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. After you use your breath weapon, you can’t use it again until you complete a short or long rest.',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Breath Weapon 2',
+                description: 'The damage of your breath weapon increases to 3d6. 4d6 at 11th level, and 5d6 at 16th level.',
+                requiredLevel: 6,
+            },
+            {
+                name: 'Breath Weapon 3',
+                description: 'The damage of your breath weapon increases to 4d6.',
+                requiredLevel: 11,
+            },
+            {
+                name: 'Breath Weapon 4',
+                description: 'The damage of your breath weapon increases to 5d6.',
+                requiredLevel: 16,
+            },
+        ],
+        proficiencies: [
+
+        ],
+        ancestry: [
+            {
+                dragon: 'black',
+                damageType: 'acid', 
+                breathWeapon: 'Your breath weapon deals acid damage in a 5 by 30ft line. Each creature affected must make a Dexterity saving throw.'
+            },
+            {
+                dragon: 'blue',
+                damageType: 'lightning', 
+                breathWeapon: 'Your breath weapon deals lightning damage in a 5 by 30ft line. Each creature affected must make a Dexterity saving throw.'
+            },
+            {
+                dragon: 'brass',
+                damageType: 'fire', 
+                breathWeapon: 'Your breath weapon deals fire damage in a 5 by 30ft line. Each creature affected must make a Dexterity saving throw.'
+            },
+            {
+                dragon: 'bronze',
+                damageType: 'lightning', 
+                breathWeapon: 'Your breath weapon deals lightning damage in a 5 by 30ft line. Each creature affected must make a Dexterity saving throw.'
+            },
+            {
+                dragon: 'copper',
+                damageType: 'acid', 
+                breathWeapon: 'Your breath weapon deals acid damage in a 5 by 30ft line. Each creature affected must make a Dexterity saving throw.'
+            },
+            {
+                dragon: 'gold',
+                damageType: 'fire', 
+                breathWeapon: 'Your breath weapon deals fire damage in a 15ft cone. Each creature affected must make a Dexterity saving throw.'
+            },
+            {
+                dragon: 'green',
+                damageType: 'poison', 
+                breathWeapon: 'Your breath weapon deals poison damage in a 15ft cone. Each creature affected must make a Constitution saving throw.'
+            },
+            {
+                dragon: 'red',
+                damageType: 'fire', 
+                breathWeapon: 'Your breath weapon deals fire damage in a 15ft cone. Each creature affected must make a Dexterity saving throw.'
+            },
+            {
+                dragon: 'silver',
+                damageType: 'cold', 
+                breathWeapon: 'Your breath weapon deals cold damage in a 15ft cone. Each creature affected must make a Constitution saving throw.'
+            },
+            {
+                dragon: 'white',
+                damageType: 'cold', 
+                breathWeapon: 'Your breath weapon deals cold damage in a 15ft cone. Each creature affected must make a Constitution saving throw.'
+            },
+        ],
+    },
 }
 
 export default races;

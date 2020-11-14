@@ -12,10 +12,31 @@ class Rogue extends Character {
         this.proficiencies.push(...classes.rogue.proficiencies);
         this.savingThrowsProficiencies = ['DEX', 'INT',];
         this.languages.push('thieves\' cant');
-        this.sneakAttack = Math.ceil(this.level / 2); // the number of d6 you get to roll
+        this.sneakAttack = 1; // the number of d6 you get to roll on a sneak attack
+    } // end of constructor
+
+    levelUp() {
+        this.level++;
+        this.HP.hitDice++;
+        this.HP.max += dice.d(this.HP.hitDiceType) + dice.mod(this.abilityScore.CON);
+        if (this.subrace === 'hill') {
+            this.HP.max++;
+        }
+        if (this.level % 2 !== 0) {
+            this.sneakAttack++;
+        }
+        // need to add to sneakAttack dice for each other level
     }
-    // end of constructor
-    // will need a "choose skills" function to select 4 proficiencies to add from rogue.skills list
+    chooseSkills() { // add skills to proficiencies if they are on the class list
+        for (let i = 0; i < arguments.length; i++) {
+            for (let j = 0; j < classes.rogue.skills.length; ++j) {
+                if (arguments[i] === classes.rogue.skills[j]) {
+                    this.proficiencies.push(classes.rogue.skills[j]);
+                }
+            }
+        }
+    }
+
 }
 
 const lem = new Rogue("Lem", 'goblin', 'none', 12, 18, 14, 16, 15, 11);
