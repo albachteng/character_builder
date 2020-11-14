@@ -600,6 +600,4 @@ const armory = {
     },
 }
 
-console.log(dagger.attack());
-
  export default armory;

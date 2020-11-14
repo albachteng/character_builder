@@ -163,7 +163,7 @@ class Character {
                     return true;
                 };
             }); 
-            breath.description += ancestry.breathWeapon;
+            breath.description += ' ' + ancestry.breathWeapon;
             this.resistances.push(ancestry.damageType);
             }
         }
@@ -262,9 +262,9 @@ class Character {
 
 export default Character;
 
-const isho = new Character("Isho", 'dragonborn', 'bronze', 17, 14, 15, 5, 9, 13);
-isho.equip(armory.armor.scaleMail);
-console.log(isho.showCharacter());
+// const isho = new Character("Isho", 'dragonborn', 'red', 17, 14, 15, 5, 9, 13);
+// isho.equip(armory.armor.scaleMail);
+// console.log(isho.showCharacter());
 
-console.log(isho.getAbilities());
-console.log(isho.resistances);
+// console.log(isho.getAbilities());
+// console.log(isho.resistances);

@@ -1,6 +1,7 @@
 import Character from './characters.js';
 import dice from './dice.js';
 import classes from './abilities';
+import armory from './items.js';
 
 class Rogue extends Character {
     constructor(name, race, subrace, STR, DEX, CON, INT, WIS, CHA) {
