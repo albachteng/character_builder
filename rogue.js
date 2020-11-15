@@ -16,16 +16,10 @@ class Rogue extends Character {
         this.sneakAttack = 1; // the number of d6 you get to roll on a sneak attack
     } // end of constructor
     levelUp() {
-        this.level++;
-        this.HP.hitDice++;
-        this.HP.max += dice.d(this.HP.hitDiceType) + dice.mod(this.abilityScore.CON);
-        if (this.subrace === 'hill') {
-            this.HP.max++;
-        }
+        super.levelUp();
         if (this.level % 2 !== 0) {
             this.sneakAttack++;
         }
-        this.proficiencyBonus = 2 + Math.floor((this.level - 1) / 4 );
         // need to add to sneakAttack dice for each other level
     }
     chooseSkills() { // add skills to proficiencies if they are on the class list

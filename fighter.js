@@ -32,13 +32,7 @@ class Fighter extends Character {
     }
     // end of constructor, begin methods below
     levelUp(attribute1, attribute2) {
-        this.level++;
-        this.HP.hitDice++; // increase hitDice number by 1;
-        this.HP.max += dice.d(this.HP.hitDiceType) + dice.mod(this.abilityScore.CON); // automatically rolls HP
-        if (this.subrace === 'hill') {
-            this.HP.max++;
-        }
-        this.HP.current = this.HP.max; // full HP upon level up
+        super.levelUp();
         if (this.level === 4 || this.level === 6 || this.level === 8 || this.level === 12 || this.level === 14 || this.level === 16 || this.level ===19) {
             this.abilityScore[attribute1]++;
             this.abilityScore[attribute2]++;
@@ -53,7 +47,6 @@ class Fighter extends Character {
         if (this.level === 18 && this.archetype === 'battleMaster') {
             this.superiorityDice.type = 12;
         }
-        this.proficiencyBonus = 2 + Math.floor((this.level - 1) / 4 );
     }
     addFightingStyle(fightingStyle) {
         switch(fightingStyle) {

@@ -52,7 +52,7 @@ class Character {
             }
             if (subrace === 'mountain') {
                 this.abilityScore.STR += 2;
-                this.proficiencies.push(...races.hillDwarf.proficiencies);
+                this.proficiencies.push(...races.mountainDwarf.proficiencies);
             }
             this.abilityScore.CON += 2;
             this.languages.push('Dwarven');
@@ -155,7 +155,16 @@ class Character {
         }
 
         // end of constructor, methods begin below
-
+    levelUp() {
+        this.level++;
+        this.HP.hitDice++;
+        this.HP.max += dice.d(this.HP.hitDiceType) + dice.mod(this.abilityScore.CON); // automatically rolls HP
+        if (this.subrace === 'hill') {
+            this.HP.max++;
+        }
+        this.HP.current = this.HP.max; // full HP upon level up
+        this.proficiencyBonus = 2 + Math.floor((this.level - 1) / 4 );
+    }
     setArchetype(archetype) {
         this.abilities.push(...classes[archetype].abilities);
         this.proficiencies.push(...classes[archetype].proficiencies);

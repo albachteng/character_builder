@@ -17,7 +17,21 @@ class Barbarian extends Character{
             this.abilities.push(...classes.beserker.abilities);
         }
     }
+    // end of constructor
+    levelUp() {
+        super.levelUp();
+        if (this.level === 3 || this.level === 6 || this.level === 12 || this.level === 17) {
+            this.rages++;
+        }
+        if (this.level === 9 || this.level === 16) {
+            this.rageDamage++;
+        }
+        if (this.level === 20) {
+            this.rages = 100;
+        }
+    }
 }
+
 
 const ulrach = new Barbarian('Ulrach', 'minotaur', 'none', 18, 14, 16, 12, 12, 10);
 console.log(ulrach.showCharacter());

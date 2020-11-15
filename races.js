@@ -34,10 +34,6 @@ const races = {
             'light armor', 'medium armor'
         ],
     },
-    hillDwarf: {
-        abilities: [],
-        proficiencies: [],
-    },
     elf: {
         abilities: [
             {

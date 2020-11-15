@@ -9,6 +9,14 @@ class Item {
     }
  }
 
+const multiply = function(item, number) {
+    let multiples = [];
+    for (let i = 0; i < number; i++) {
+        multiples.push({...item});
+        return multiples;
+    }
+}
+
 const abacus = new Item('abacus', '', 2, 2);
 const acid = new Item('acid', 
     'As an action, you can splash the contents ofthis vial onto a creature within 5 feet of you or throw the vial up to 20 feet, shattering it on impact. In either case,makearangedattackagainstacreatureorobject, treating the acid as an improvised weapon. On a hit, the target takes 2d6 acid damage.', 
@@ -684,7 +692,27 @@ const armory = {
         shield,
     },
     items: {
-
+        abacus, acid, alchemistsFire, arrow,
+        crossbowBolt, antitoxin, arcaneCrystal,
+        arcaneOrb, arcaneRod, arcaneStaff, arcaneWand,
+        backpack, bedroll, ballBearings, barrel, 
+        basket, bell, blanket, blockAndTackle, 
+        book, bottle, bucket, caltrops, candle, 
+        caseBolt, caseScroll, chain, chalk, 
+        chest, climbersKit, commonClothes, costumeClothes, 
+        fineClothes, travelersClothes, componentPouch, 
+        crowbar, fishingTackle, flask, grapplingHook, 
+        hammer, sledgehammer, healersKit, holyAmulet, 
+        holyEmblem, holyReliquary, holyWater, hourglass,
+        huntingTrap, ink, inkPen, jug, ladder, 
+        lamp, bullseyeLantern, hoodedLantern, lock, 
+        magnifyingGlass, manacles, messKit, mirror, 
+        oil, paper, parchment, perfume, pick, piton, 
+        poison, pole, pot, healingPotion, pouch, quiver, 
+        ram, rations, robes, rope, silkRope, sack, scale, 
+        sealingWax, shovel, signetRing, whistle, soap, 
+        spellbook, spike, spyglass, tent, tinderbox, 
+        torch, vial, waterskin, whetstone, 
     }, 
     potions: {
 
@@ -696,7 +724,7 @@ const armory = {
  const equipmentPacks = {
     burglarsPack: {
         price: 16,
-        contents: 'backpack, a bag of 1,000 ball bearings, 10 feet of string, a bell, 5 candles, a crowbar, a hammer, 10 pitons, a hooded lantern, 2 flasks of oil, 5 days rations, a tinderbox, and a waterskin. The pack also has 50 feet of hempen rope strapped to the side of it.'
+        // contents: [backpack, ballBearings, '10 feet of string', bell, candle, candle, candle, candle, candle, crowbar, hammer, ] 10 pitons, a hooded lantern, 2 flasks of oil, 5 days rations, a tinderbox, and a waterskin. The pack also has 50 feet of hempen rope strapped to the side of it.'
     },
     diplomatsPack: {
         price: 39,
@@ -723,3 +751,5 @@ const armory = {
         contents: 'backpack, a book o f lore, a bottle of ink, an ink pen, 10 sheets of parchment, a little bag of sand, and a small knife.',
     },
 }
+
+console.log(multiply(dagger, 3));
