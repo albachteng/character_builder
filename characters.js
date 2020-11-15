@@ -227,6 +227,15 @@ class Character {
         }
         return available;
     }
+    abilityCheck(skill, stat, advantage) { // use abilityCheck('intimidation', 'CHA', 'disadvantage');
+        let check = 0;
+        if (this.proficiencies.includes(skill)) {
+            check += this.proficiencyBonus;
+        }
+        check += dice.mod(this.abilityScore[stat]);
+        check += dice.d(20, advantage);
+        return check; 
+    }
     showCharacter() {
         return `
         ${this.name} level ${this.level} ${this.race}
@@ -287,7 +296,7 @@ class Character {
 
 export default Character;
 
-// const isho = new Character("Isho", 'dragonborn', 'red', 17, 14, 15, 5, 9, 13);
+const isho = new Character("Isho", 'minotaur', 'red', 17, 14, 15, 5, 9, 13);
 // console.log(isho.attack(armory.weapons.glaive, 'STR', true));
 // console.log(isho.attack(armory.weapons.glaive, 'STR', false, 'advantage'));
 // console.log(isho.attack(armory.weapons.glaive, 'STR', true));
@@ -299,3 +308,11 @@ export default Character;
 
 // console.log(isho.getAbilities());
 // console.log(isho.resistances);
+console.log(isho.abilityCheck('intimidation', 'STR', 'advantage'));
+console.log(isho.abilityCheck('intimidation', 'STR', 'advantage'));
+console.log(isho.abilityCheck('intimidation', 'STR', 'advantage'));
+console.log(isho.abilityCheck('intimidation', 'STR', 'advantage'));
+console.log(isho.abilityCheck('intimidation', 'INT', 'disadvantage'));
+console.log(isho.abilityCheck('intimidation', 'INT', 'disadvantage'));
+console.log(isho.abilityCheck('intimidation', 'INT', 'disadvantage'));
+console.log(isho.abilityCheck('intimidation', 'INT', 'disadvantage'));
