@@ -232,9 +232,9 @@ class Character {
         CHA: ${this.abilityScore.CHA} (+${dice.mod(this.abilityScore.CHA)})
         `
     }
-    attack(weapon, stat, twoHand) {
+    attack(weapon, stat, twoHand, advantage) {
         let modifier = dice.mod(this.abilityScore[stat]);
-        let rawAttackRoll = dice.d(20);
+        let rawAttackRoll = dice.d(20, advantage);
         let attackRoll = rawAttackRoll;
         if (this.proficiencies.includes(weapon.name)) {
             attackRoll += this.proficiencyBonus;
@@ -242,7 +242,7 @@ class Character {
         if (rawAttackRoll === 1) {
             return 'critical failure';
         } else if (rawAttackRoll === 20) {
-            return [attackRoll + modifier, 2 * (weapon.attack(twoHand) + modifier), 'critical hit'];
+            return [attackRoll + modifier, (2 * (weapon.attack(twoHand)) + modifier), 'critical hit'];
         } else if (rawAttackRoll < 20) {
             return [attackRoll + modifier, weapon.attack(twoHand) + modifier];
         }
@@ -280,13 +280,13 @@ class Character {
 
 export default Character;
 
-const isho = new Character("Isho", 'dragonborn', 'red', 17, 14, 15, 5, 9, 13);
-console.log(isho.attack(armory.weapons.glaive, 'STR', true));
-console.log(isho.attack(armory.weapons.glaive, 'STR', true));
-console.log(isho.attack(armory.weapons.glaive, 'STR', true));
-console.log(isho.attack(armory.weapons.glaive, 'STR', true));
-console.log(isho.attack(armory.weapons.glaive, 'STR', true));
-
+// const isho = new Character("Isho", 'dragonborn', 'red', 17, 14, 15, 5, 9, 13);
+// console.log(isho.attack(armory.weapons.glaive, 'STR', true));
+// console.log(isho.attack(armory.weapons.glaive, 'STR', false, 'advantage'));
+// console.log(isho.attack(armory.weapons.glaive, 'STR', true));
+// console.log(isho.attack(armory.weapons.glaive, 'STR', true, 'advantage'));
+// console.log(isho.attack(armory.weapons.glaive, 'STR', true, 'disadvantage'));
+// console.log(isho.showCharacter());
 // isho.equip(armory.armor.scaleMail);
 // console.log(isho.showCharacter());
 

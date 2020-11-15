@@ -123,9 +123,12 @@ const whetstone = new Item('whetstone', '', 1, .01);
         };
         attack(twoHand) { // returns the raw damage of a weapon attack, without modifiers
             let damage = 0;
+            if (this.properties.includes('two-handed')) {
+                twoHand = true;
+            }
             if (twoHand) {
                 damage += dice.d(this.damage[1]);
-            } else {
+            } else if (!twoHand) {
                 damage += dice.d(this.damage[0]);
             }
             if (this.properties.includes('multiple dice')) {

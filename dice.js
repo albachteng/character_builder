@@ -2,7 +2,9 @@ const dice = {
     d: (num, advantage) => { // takes a number as dice type and makes the appropriate roll
         let firstRoll = 1 + Math.floor(Math.random()*num);
         let secondRoll = 1 + Math.floor(Math.random()*num);
-        if (advantage === 'advantage') {
+        if (num === 0) {
+            return 0;
+        } else if (advantage === 'advantage') {
             if (firstRoll >= secondRoll) {
                 return firstRoll;
             } else if (secondRoll > firstRoll) {
