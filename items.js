@@ -121,26 +121,17 @@ const whetstone = new Item('whetstone', '', 1, .01);
          this.damage = damage; // array with either 1 or two numbers (for versatile)
          this.properties = properties; // array of properties
         };
-         attack() {
-            let damage = dice.d(this.damage[0]);
-            console.log(`attack = ${damage}`);
-            if (this.properties.includes('two-handed')) {
-                return this.twoHandAttack();
+        attack(twoHand) { // returns the raw damage of a weapon attack, without modifiers
+            let damage = 0;
+            if (twoHand) {
+                damage += dice.d(this.damage[1]);
             } else {
-                return damage;
+                damage += dice.d(this.damage[0]);
             }
-        }
-        twoHandAttack() {
-            if (this.damage[1]) {
-                let damage = dice.d(this.damage[1]);
-                if (this.properties.includes('multiple dice')) {
-                    damage *= 2;
-                }
-                console.log(`attack = ${damage}`);
-                return damage;
-            } else {
-                return this.attack();
+            if (this.properties.includes('multiple dice')) {
+                damage *= 2;
             }
+            return damage;
         }
  }
 
@@ -751,5 +742,3 @@ const armory = {
         contents: 'backpack, a book o f lore, a bottle of ink, an ink pen, 10 sheets of parchment, a little bag of sand, and a small knife.',
     },
 }
-
-console.log(multiply(dagger, 3));

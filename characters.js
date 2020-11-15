@@ -241,14 +241,10 @@ class Character {
         }
         if (rawAttackRoll === 1) {
             return 'critical failure';
-        } else if (weapon.properties.includes('versatile') && rawAttackRoll === 20 && twoHand) {
-            return [attackRoll + modifier, 2 * (weapon.twoHandAttack() + modifier), 'critical hit'];
-        } else if (weapon.properties.includes('versatile') && rawAttackRoll !== 20 && twoHand) {
-            return [attackRoll + modifier, weapon.twoHandAttack() + modifier];
-        } else if (rawAttackRoll === 20 && !twoHand) {
-            return [attackRoll + modifier, 2 * (weapon.attack() + modifier)];
-        } else {
-            return [attackRoll + modifier, weapon.attack() + modifier];
+        } else if (rawAttackRoll === 20) {
+            return [attackRoll + modifier, 2 * (weapon.attack(twoHand) + modifier), 'critical hit'];
+        } else if (rawAttackRoll < 20) {
+            return [attackRoll + modifier, weapon.attack(twoHand) + modifier];
         }
     }
     equip(armor) {
@@ -284,8 +280,13 @@ class Character {
 
 export default Character;
 
-// const isho = new Character("Isho", 'dragonborn', 'red', 17, 14, 15, 5, 9, 13);
-// isho.equip(armory.armor.shield);
+const isho = new Character("Isho", 'dragonborn', 'red', 17, 14, 15, 5, 9, 13);
+console.log(isho.attack(armory.weapons.glaive, 'STR', true));
+console.log(isho.attack(armory.weapons.glaive, 'STR', true));
+console.log(isho.attack(armory.weapons.glaive, 'STR', true));
+console.log(isho.attack(armory.weapons.glaive, 'STR', true));
+console.log(isho.attack(armory.weapons.glaive, 'STR', true));
+
 // isho.equip(armory.armor.scaleMail);
 // console.log(isho.showCharacter());
 
