@@ -738,26 +738,53 @@ const armory = {
     },
     diplomatsPack: {
         price: 39,
-        contents: 'a chest, 2 cases for maps and scrolls, a set o f fine clothes, a bottle o f ink, an ink pen, a lamp, 2 flasks o f oil, 5 sheets o f paper, a vial o f perfume, sealing wax, and soap.',
+        contents: [
+            chest, ...multiply(caseScroll, 2),
+            fineClothes, ink, inkPen, lamp,
+            ...multiply(oil, 2), ...multiply(paper, 5), 
+            perfume, sealingWax, soap,
+        ],
     } ,
     dungeoneersPack: {
         price: 12,
-        contents: 'backpack, a crowbar, a hammer, 10 pitons, 10 torches, a tinderbox, 10 days o f rations, and a waterskin. The pack also has 50 feet o f hempen rope strapped to the side of it.',
+        contents: [
+            backpack, crowbar, hammer, 
+            ...multiply(piton, 10), ...multiply(torch, 10),
+            tinderbox, multiply(rations, 10), waterskin, 
+            rope,
+        ],
     },
     entertainersPack: {
         price: 40,
-        contents: 'backpack, a bedroll, 2 costumes, 5 candles, 5 days o f rations, a waterskin, and a disguise kit.',
+        contents: [
+            backpack, bedroll, ...multiply(costumeClothes, 2),
+            ...multiply(candle, 5), ...multiply(rations, 5),
+            waterskin, 'disguiseKit',
+        ],
     }, 
     explorersPack: {
         price: 10,
-        contents: '(10 gp). Includes a backpack, a bedroll, a mess kit, a tinderbox, 10 torches, 10 days of rations, and a waterskin. The pack also has 50 feet o f hempen rope strapped to the side of it.',
+        contents: [
+            backpack, bedroll, messKit, tinderbox, 
+            ...multiply(torch, 10), ...multiply(rations, 10),
+            waterskin, rope,
+        ],
     },
     priestsPack: {
         price: 19,
-        contents: 'backpack, a blanket, 10 candles, a tinderbox, an alms box, 2 blocks o f incense, a censer, vestments, 2 days of rations, and a waterskin.',
+        contents: [
+            backpack, blanket, ...multiply(candle, 10),
+            tinderbox, 'alms box', '2 blocks of incense',
+            'censer', 'vestaments', ...multiply(rations, 2),
+            waterskin, 
+        ],
     },
     scholarsPack: {
         price: 40,
-        contents: 'backpack, a book o f lore, a bottle of ink, an ink pen, 10 sheets of parchment, a little bag of sand, and a small knife.',
+        contents: [
+            backpack, book, ink, inkPen, 
+            ...multiply(parchment, 10), 
+            'bag of sand', 'small knife',
+        ], 
     },
 }
