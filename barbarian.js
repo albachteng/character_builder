@@ -18,13 +18,17 @@ class Barbarian extends Character{
         }
     }
     // end of constructor
-    levelUp() {
+    levelUp(ability1, ability2) {
         super.levelUp();
         if (this.level === 3 || this.level === 6 || this.level === 12 || this.level === 17) {
             this.rages++;
         }
         if (this.level === 9 || this.level === 16) {
             this.rageDamage++;
+        }
+        if (this.level === 4 || this.level === 8 || this.level === 12 || this.level === 16 || this.level === 20) {
+            this.abilityScore[ability1]++;
+            this.abilityScore[ability2]++;
         }
         if (this.level === 20) {
             this.rages = 100;

@@ -26,7 +26,7 @@ class Character {
             current: 0,
             max: 0,
             hitDice: 1,
-            hitDiceType: 0,
+            hitDiceType: 0, // set by class;
             temporary: 0,
         }; 
         this.abilityScore = { // object, start all stats at 10??
@@ -165,6 +165,17 @@ class Character {
         this.HP.current = this.HP.max; // full HP upon level up
         this.proficiencyBonus = 2 + Math.floor((this.level - 1) / 4 );
     }
+    shortRest(number) {
+        let heal = dice.d(this.HP.hitDiceType) * number;
+        this.HP.current += heal;
+        if (this.HP.current > this.HP.max) {
+            this.HP.current = this.HP.max;
+        }
+        return this.HP.current;
+    }
+    longRest() {
+        this.HP.current = this.HP.max;
+    }
     setArchetype(archetype) {
         this.abilities.push(...classes[archetype].abilities);
         this.proficiencies.push(...classes[archetype].proficiencies);
@@ -184,7 +195,7 @@ class Character {
             this.items.splice(this.items.indexOf(item), 1);
             this.encumberance -= item.weight; 
             return item;
-        } 
+        }
     }
     getAbilityScores() {
         return this.abilityScore;
