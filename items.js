@@ -9,13 +9,22 @@ class Item {
     }
  }
 
-const multiply = function(item, number) {
+// const multiply = function(item, number) {
+//     let multiples = [];
+//     for (let i = 0; i < number; i++) {
+//         multiples.push({...item});
+//         return multiples;
+//     }
+// }
+
+function multiply(item, number) {
     let multiples = [];
     for (let i = 0; i < number; i++) {
-        multiples.push({...item});
-        return multiples;
+      multiples.push(item);
     }
-}
+    return multiples;
+  }
+
 
 const abacus = new Item('abacus', '', 2, 2);
 const acid = new Item('acid', 
@@ -283,7 +292,7 @@ const plate = new Armor(
 )
 
 const shield = new Armor(
-    'Shield', 'A metal or reinforced-wood shield', 6, 10, 2, 0, '', 'shield',
+    'Shield', 'A standard metal or reinforced-wood shield', 6, 10, 2, 0, '', 'shield',
 )
 
 // WEAPONS 
@@ -718,7 +727,14 @@ const armory = {
  const equipmentPacks = {
     burglarsPack: {
         price: 16,
-        // contents: [backpack, ballBearings, '10 feet of string', bell, candle, candle, candle, candle, candle, crowbar, hammer, ] 10 pitons, a hooded lantern, 2 flasks of oil, 5 days rations, a tinderbox, and a waterskin. The pack also has 50 feet of hempen rope strapped to the side of it.'
+        contents: [backpack, ballBearings, 
+            '10 feet of string', bell,
+            ...multiply(candle, 5), crowbar, 
+            hammer, ...multiply(piton, 10), 
+            hoodedLantern, ...multiply(oil, 2), 
+            ...multiply(rations, 5), tinderbox, 
+            waterskin, rope,
+        ],
     },
     diplomatsPack: {
         price: 39,
