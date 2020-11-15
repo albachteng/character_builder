@@ -23,6 +23,7 @@ class Character {
         this.resistances = []; // empty array of strings
         this.archetype = '';
         this.wallet = 0;
+        this.startingWealth = 0;
         this.HP = { // the HP object, keeps all the related ideas together
             current: 0,
             max: 0,
@@ -180,6 +181,11 @@ class Character {
     }
     longRest() {
         this.HP.current = this.HP.max;
+    }
+    addStartingWealth(){
+        let gold = dice.repeat(this.startingWealth, 4) * 10;
+        this.wallet += gold;
+        return gold;
     }
     setArchetype(archetype) {
         this.abilities.push(...classes[archetype].abilities);

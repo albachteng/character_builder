@@ -26,6 +26,9 @@ const dice = {
         return Math.floor((stat - 10) / 2);
     },
     repeat: (num, die) => {
+        if (num === 0) {
+            return 0;
+        }
         let total = 0;
         for (let i = 0; i < num; i++) {
             total += dice.d(die);
