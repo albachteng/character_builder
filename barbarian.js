@@ -6,6 +6,7 @@ import armory from './items.js';
 class Barbarian extends Character{
     constructor(name, race, subrace, STR, DEX, CON, INT, WIS, CHA) {
         super(name, race, subrace, STR, DEX, CON, INT, WIS, CHA);
+        this.class = 'barbarian';
         this.startingWealth = 2;
         this.HP.hitDiceType += 12;
         this.HP.max += 12 + dice.mod(this.abilityScore.CON);

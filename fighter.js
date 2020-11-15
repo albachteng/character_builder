@@ -6,6 +6,7 @@ import classes from './abilities.js';
 class Fighter extends Character {
     constructor(name, race, subrace, STR, DEX, CON, INT, WIS, CHA) {
         super(name, race, subrace, STR, DEX, CON, INT, WIS, CHA);
+        this.class = 'fighter';
         this.startingWealth = 5;
         this.HP.hitDiceType += 10; // the VALUE of hit dice, not number. See hitDiceNumber property
         this.HP.max += 10 + dice.mod(this.abilityScore.CON); 

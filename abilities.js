@@ -1,3 +1,5 @@
+import armory from "./items";
+
 class Ability {
     constructor(name, description, requiredLevel) {
         this.name = name;
@@ -491,7 +493,105 @@ const classes = {
         ],
         proficiencies: ['disguise kit', 'forgery kit', 'one additional gaming set', 'two additional languages'], 
     },
-    ranger: {},
+    ranger: {
+        abilities: [
+            {
+                name: 'Favored Enemy',
+                description: 'You have significant experience studying, tracking, hunting, and even talking to a certain type of enemy. Choose a type of favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, or undead. Alternatively, you can select two races of humanoid (such as gnolls and orcs) as favored enemies. You have advantage on Wisdom (Survival) checks to track your favored enemies, as well as on Intelligence checks to recall information about them. You choose one additional favored enemy, as well as an associated language, at 6th and 14th level. As you gain levels, your choices should reflect the types of monsters you have encountered on your adventures.',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Favored Enemy 2',
+                description: 'Choose one additional favored enemy, as well as an associated language. Your choices should reflect the types of monsters you have encountered on your adventures.',
+                requiredLevel: 6,
+            },
+            {
+                name: 'Favored Enemy 3',
+                description: 'Choose one additional favored enemy, as well as an associated language. Your choices should reflect the types of monsters you have encountered on your adventures.',
+                requiredLevel: 14,
+            },
+            {
+                name: 'Natural Explorer',
+                description: 'You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, swamp, or the Underdark. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you’re proficient in. While traveling for an hour or more in your favored terrain, you gain the following benefits: difficult terrain doesn’t slow your group’s travel; your group can’t becom e lost except by magical means; even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger; if you are traveling alone, you can move stealthily at a normal pace; when you forage, you find twice as much food as you normally would; while tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Natural Explorer 2',
+                description: 'Choose one additional favored terrain.' , 
+                requiredLevel: 6,
+            },
+            {
+                name: 'Natural Explorer 3',
+                description: 'Choose one additional favored terrain.' , 
+                requiredLevel: 10,
+            },
+            {
+                name: 'Primeval Awareness',
+                description: 'You can use your action and expend one ranger spell slot to focus your awareness on the region around you. For 1 minute per level of the spell slot you expend, you can sense whether the following types of creatures are present within 1 mile of you (or within up to 6 miles if you are in your favored terrain): aberrations, celestials, dragons, elementals, fey, fiends, and undead. This feature doesn’t reveal the creatures’ location or number.',
+                requiredLevel: 3,
+            },
+            {
+                name: 'Extra Attack',
+                description: 'You can attack twice, instead of once, whenever you take the Attack action on your turn.',
+                requiredLevel: 5,
+            },
+            {
+                name: 'Land\'s Stride',
+                description: 'Moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard. In addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement, such those created by the entangle spell.',
+                requiredLevel: 8,
+            },
+            {
+                name: 'Hide in Plain Sight',
+                description: 'You can spend 1 minute creating camouflage for yourself. You must have access to fresh mud, dirt, plants, soot, and other naturally occurring materials with which to create your camouflage. Once you are camouflaged in this way, you can try to hide by pressing yourself up against a solid surface, such as a tree or wall, that is at least as tall and wide as you are. You gain a +10 bonus to Dexterity (Stealth) checks as long as you remain there without moving or taking actions. Once you move or take an action or a reaction, you must camouflage yourself again to gain this benefit.',
+                requiredLevel: 10,
+            },
+            {
+                name: 'Vanish',
+                description: '',
+                requiredLevel: 1,
+            },
+            {
+                name: '',
+                description: '',
+                requiredLevel: 1,
+            },
+            {
+                name: '',
+                description: '',
+                requiredLevel: 1,
+            },
+            {
+                name: '',
+                description: '',
+                requiredLevel: 1,
+            },
+            {
+                name: '',
+                description: '',
+                requiredLevel: 1,
+            },
+        ],
+        proficiencies: [
+            'light armor', 'medium armor', 'shields', 
+            'club', 'dagger', 'greatclub', 
+            'handaxe', 'javelin', 'light hammer', 
+            'mace', 'quarterstaff', 'sickle',
+            'spear', 'light crossbow', 'dart',
+            'shortbow', 'sling', 'battleaxe',
+            'flail', 'glaive', 'greataxe',
+            'greatsword', 'halberd', 'lance',
+            'longsword', 'maul', 'morningstar',
+            'pike', 'rapier', 'scimitar',
+            'shortsword', 'trident', 'warpick',
+            'warhammer', 'whip', 'blowgun',
+            'hand crossbow', 'heavy crossbow', 'longbow',
+            'net', 
+        ], 
+        skills: [
+            'animal handling', 'athletics', 'insight', 'investigation', 'nature',
+            'perception', 'stealth', 'survival',
+        ], 
+    },
     artificer: {},
 }
 

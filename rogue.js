@@ -9,6 +9,7 @@ class Rogue extends Character {
         this.HP.hitDiceType += 8; // the VALUE of hit dice, not number. See hitDiceNumber property
         this.HP.max += 8 + dice.mod(this.abilityScore.CON); 
         this.startingWealth = 4;
+        this.class = 'rogue';
         this.HP.current = this.HP.max;
         this.abilities.push(...classes.rogue.abilities);
         this.proficiencies.push(...classes.rogue.proficiencies);
@@ -23,16 +24,6 @@ class Rogue extends Character {
         }
         // need to add to sneakAttack dice for each other level
     }
-    chooseSkills() { // add skills to proficiencies if they are on the class list
-        for (let i = 0; i < arguments.length; i++) {
-            for (let j = 0; j < classes.rogue.skills.length; ++j) {
-                if (arguments[i] === classes.rogue.skills[j]) {
-                    this.proficiencies.push(classes.rogue.skills[j]);
-                }
-            }
-        }
-    }
-
 }
 
 const lem = new Rogue("Lem", 'goblin', 'none', 12, 18, 14, 16, 15, 11);

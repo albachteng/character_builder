@@ -11,6 +11,7 @@ import classes from './abilities.js';
 class Character {
     constructor(name, race, subrace, STR, DEX, CON, INT, WIS, CHA) {
         this.name = name; // string
+        this.class = '';
         this.level = 1; // number; important for class abilities later on
         this.items = []; // array of items, see 'item.js'; initialized empty
         this.abilities = []; // an array, maybe better as an object?
@@ -187,6 +188,15 @@ class Character {
         this.wallet += gold;
         return gold;
     }
+    chooseSkills() { // add skills to proficiencies if they are on the class list
+        for (let i = 0; i < arguments.length; i++) {
+            for (let j = 0; j < classes[this.class].skills.length; ++j) {
+                if (arguments[i] === classes[this.class].skills[j]) {
+                    this.proficiencies.push(classes[this.class].skills[j]);
+                }
+            }
+        }
+    }
     setArchetype(archetype) {
         this.abilities.push(...classes[archetype].abilities);
         this.proficiencies.push(...classes[archetype].proficiencies);
@@ -247,6 +257,9 @@ class Character {
         WIS: ${this.abilityScore.WIS} (+${dice.mod(this.abilityScore.WIS)})
         CHA: ${this.abilityScore.CHA} (+${dice.mod(this.abilityScore.CHA)})
         `
+    }
+    rollInitiative() {
+        return dice.d(20) + dice.mod(this.abilityScore.DEX);
     }
     attack(weapon, stat, twoHand, advantage) {
         let modifier = dice.mod(this.abilityScore[stat]);
