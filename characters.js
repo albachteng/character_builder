@@ -15,11 +15,13 @@ class Character {
         this.items = []; // array of items, see 'item.js'; initialized empty
         this.abilities = []; // an array, maybe better as an object?
         this.proficiencyBonus = 2; // start at two, increases every third level?
+        this.savingThrows = [];
         this.proficiencies = []; // also might be better as an object... 
         this.speed = 0; // start at zero and add to it based on race, class, abilities
         this.languages = ['Common'];
         this.encumberance = 0; // initialize to zero;
         this.resistances = []; // empty array of strings
+        this.archetype = '';
         this.HP = { // the HP object, keeps all the related ideas together
             current: 0,
             max: 0,
@@ -115,23 +117,7 @@ class Character {
             this.size = 'small';
             this.speed += 30;
             this.languages.push('Goblin');
-            this.abilities.push(
-                {
-                    name: 'Dakvision',
-                    description: 'You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.',
-                    requiredLevel: 1,
-                },
-                {
-                    name: 'Fury of the Small',
-                    description: `When you damage a creature with an attack or a spell and the creature\'s size is larger than yours, you can cause the attack or spell to deal extra damage to the creature. The extra damage equals your level (${this.level}). One you use this trait, you can\'t use it again until you finish a long or short rest.`,
-                    requiredLevel: 1,
-                },
-                {
-                    name: 'Nimble Escape',
-                    description: 'You can take the Disengage or Hide action as a bonus action on each of your turns.',
-                    requiredLevel: 1,
-                },
-            );
+            this.abilities.push(...races.goblin.abilities);
         }
 
         // MINOTAUR
@@ -171,11 +157,11 @@ class Character {
         // end of constructor, methods begin below
 
     setArchetype(archetype) {
-        if (this.level === 3) {
-            this.archetype = archetype;
-            this.abilities.push(...classes[archetype].abilities);
-            this.proficiencies.push(...classes[archetype].proficiencies);
-        }}
+        this.abilities.push(...classes[archetype].abilities);
+        this.proficiencies.push(...classes[archetype].proficiencies);
+        this.archetype = archetype;
+        return this.archetype;
+        }
     getItems() {
         return this.items;
     }

@@ -11,11 +11,14 @@ class Rogue extends Character {
         this.HP.current = this.HP.max;
         this.abilities.push(...classes.rogue.abilities);
         this.proficiencies.push(...classes.rogue.proficiencies);
-        this.savingThrowsProficiencies = ['DEX', 'INT',];
+        this.savingThrows.push('DEX', 'INT');
         this.languages.push('thieves\' cant');
         this.sneakAttack = 1; // the number of d6 you get to roll on a sneak attack
     } // end of constructor
-
+    setArchetype(archetype) {
+        super.setArchetype(archetype); 
+        return this.archetype;
+    }
     levelUp() {
         this.level++;
         this.HP.hitDice++;
@@ -26,6 +29,7 @@ class Rogue extends Character {
         if (this.level % 2 !== 0) {
             this.sneakAttack++;
         }
+        this.proficiencyBonus = 2 + Math.floor((this.level - 1) / 4 );
         // need to add to sneakAttack dice for each other level
     }
     chooseSkills() { // add skills to proficiencies if they are on the class list
@@ -41,5 +45,17 @@ class Rogue extends Character {
 }
 
 const lem = new Rogue("Lem", 'goblin', 'none', 12, 18, 14, 16, 15, 11);
-lem.addItem('assassin');
-console.log(lem.getAbilities());
+// console.log(lem.getAbilities());
+// console.log(lem.showCharacter());
+// lem.chooseSkills('insight', 'deception', 'acrobatics', 'sleight of hand');
+// lem.levelUp();
+// lem.levelUp();
+// lem.levelUp();
+// lem.levelUp();
+// lem.levelUp();
+// lem.levelUp();
+// lem.levelUp();
+// lem.levelUp();
+// lem.levelUp();
+// console.log(lem.setArchetype('mastermind'));
+// console.log(lem.abilities);

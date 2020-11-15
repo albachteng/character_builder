@@ -11,7 +11,7 @@ class Fighter extends Character {
         this.HP.current = this.HP.max;
         this.abilities.push(...classes.fighter.abilities);
         this.proficiencies.push(...classes.fighter.proficiencies);
-        this.savingThrowsProficiencies = ['STR', 'CON',];
+        this.savingThrows.push('STR','CON');
         this.fightingStyle = '';
         this.superiorityDice = { 
             type: 8,
@@ -53,6 +53,7 @@ class Fighter extends Character {
         if (this.level === 18 && this.archetype === 'battleMaster') {
             this.superiorityDice.type = 12;
         }
+        this.proficiencyBonus = 2 + Math.floor((this.level - 1) / 4 );
     }
     addFightingStyle(fightingStyle) {
         switch(fightingStyle) {
@@ -129,7 +130,7 @@ class Fighter extends Character {
 
 const isho = new Fighter('Isho-Genni', 'human', 'none', 17, 14, 15, 5, 9, 13);
 isho.setFightingStyle('Defense');
-isho.setArchetype('Battle Master');
+isho.setArchetype('battleMaster');
 isho.levelUp();
 isho.levelUp();
 isho.levelUp();
@@ -149,4 +150,6 @@ isho.addItem(armory.armor.shield);
 isho.addItem(armory.weapons.shortbow);
 isho.equip(armory.armor.scaleMail);
 isho.equip(armory.armor.shield);
+// console.log(isho.getAbilities());
+console.log(isho.archetype);
 console.log(isho.getAbilities());

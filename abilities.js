@@ -7,6 +7,124 @@ class Ability {
 }
 
 const classes = {
+    barbarian: {
+        abilities: [
+            {
+                name: 'Rage',
+                description: 'On your turn, you can enter a rage as a bonus action. While raging, you gain the following benefits if you aren’t wearing heavy armor: 1) You have advantage on Strength checks and Strength saving throws. 2) When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a barbarian. 3) You have resistance to bludgeoning, piercing, and slashing damage. If you are able to cast spells, you can’t cast them or concentrate on them while raging. Your rage lasts for 1 minute. It ends early if you are knocked unconscious or if your turn ends and you haven’t attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on your turn as a bonus action. Once you have raged the number of times shown for your barbarian level in the Rages column of the Barbarian table, you must finish a long rest before you can rage again.',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Unarmored Defense',
+                description: 'While you are not wearing armor, your AC equals 10+ your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Reckless Attack',
+                description: 'You can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives you advantage on melee weapon attack rolls using Strength during this turn, but attack rolls against you have advantage until your next turn.',
+                requiredLevel: 2,
+            },
+            {
+                name: 'Danger Sense',
+                description: 'You gain an uncanny sense of when things nearby aren’t as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity saving throws against effects that you can see, such as traps and spells. To gain this benefit, you can’t be blinded, deafened, or incapacitated.',
+                requiredLevel: 2,
+            },
+            {
+                name: 'Extra Attack',
+                description: 'You can attack twice, instead of once, whenever you take the Attack action on your turn.',
+                requiredLevel: 5,
+            },
+            {
+                name: 'Fast Movement',
+                description: 'Your speed increases by 10 feet while you aren\'t wearing heavy armor.',
+                requiredLevel: 5,
+            },
+            {
+                name: 'Feral Instinct',
+                description: 'Your instincts are so honed that you have advantage on initiative rolls. Additionally, if you are surprised at the beginning of combat and aren’t incapacitated, you can act normally on your first turn, but only if you enter your rage before doing anything else on that turn.',
+                requiredLevel: 7,
+            },
+            {
+                name: 'Brutal Critical',
+                description: 'You can roll one additional weapon damage die when determining the extra damage for a critical hit with a melee attack.',
+                requiredLevel: 9,
+            },
+            {
+                name: 'Brutal Critical 2',
+                description: 'You can roll two additional weapon damage die when determining the extra damage for a critical hit with a melee attack.',
+                requiredLevel: 13,
+            },
+            {
+                name: 'Brutal Critical 3',
+                description: 'You can roll three additional weapon damage die when determining the extra damage for a critical hit with a melee attack.',
+                requiredLevel: 17,
+            },
+            {
+                name: 'Relentless Rage',
+                description: 'Your rage can keep you fighting despite grievous wounds. If you drop to 0 hit points while you’re raging and don’t die outright, you can make a DC 10 Constitution saving throw. If you succeed, you drop to 1 hit point instead. Each time you use this feature after the first, the DC increases by 5. When you finish a short or long rest, the DC resets to 10.',
+                requiredLevel: 11,
+            },
+            {
+                name: 'Persistent Rage',
+                description: 'Your rage is so fierce that it ends early only if you fall unconscious or if you choose to end it.',
+                requiredLevel: 15,
+            },
+            {
+                name: 'Indomitable Might',
+                description: 'If your total for a Strength check is less than your Strength score, you can use that score in place of the total.',
+                requiredLevel: 18,
+            },
+            {
+                name: 'Primal Champion',
+                description: 'You embody the power of the wilds. Your Strength and Constitution scores increase by 4. Your maximum for those scores is now 24.',
+                requiredLevel: 20,
+            },
+        ],
+        proficiencies: [
+            'light armor', 'medium armor', 'shields', 
+            'club', 'dagger', 'greatclub', 
+            'handaxe', 'javelin', 'light hammer', 
+            'mace', 'quarterstaff', 'sickle',
+            'spear', 'light crossbow', 'dart',
+            'shortbow', 'sling', 'battleaxe',
+            'flail', 'glaive', 'greataxe',
+            'greatsword', 'halberd', 'lance',
+            'longsword', 'maul', 'morningstar',
+            'pike', 'rapier', 'scimitar',
+            'shortsword', 'trident', 'warpick',
+            'warhammer', 'whip', 'blowgun',
+            'hand crossbow', 'heavy crossbow', 'longbow',
+            'net', 
+        ],
+        skills: [
+            'animal handling', 'athletics', 'intimidation', 'nature', 'perception', 'survival',
+        ],
+    },
+    beserker: {
+        abilities: [
+            {
+                name: 'Frenzy',
+                description: 'You can go into a frenzy when you rage. If you do so, for the duration of your rage you can make a single melee weapon attack as a bonus action on each of your turns after this one. When your rage ends, you suffer one level of exhaustion (as described in appendix A).', 
+                requiredLevel: 3,
+            },
+            {
+                name: 'Mindless Rage',
+                description: 'You can’t be charmed or frightened while raging. Ifyou are charmed or frightened when you enter your rage, the effect is suspended for the duration of the rage.', 
+                requiredLevel: 6,
+            },
+            {
+                name: 'Intimidating Presence',
+                description: 'You can use your action to frighten someone with your menacing presence. When you do so, choose one creature that you can see within 30 feet of you. If the creature can see or hear you, it must succeed on a Wisdom saving throw (DC equal to 8 + your proficiency bonus + your Charisma modifier) or be frightened of you until the end of your next turn. On subsequent turns, you can use your action to extend the duration of this effect on the frightened creature until the end of your next turn. This effect ends if the creature ends its turn out of line of sight or more than 60 feet away from you. If the creature succeeds on its saving throw, you can\'t use this feature on that creature again for 24 hours.', 
+                requiredLevel: 10,
+            },
+            {
+                name: 'Retaliation',
+                description: 'When you take damage from a creature that is within 5 feet of you. you can use your reaction to make a melee weapon attack against that creature.', 
+                requiredLevel: 14,
+            },
+        ],
+    },
+    totemWarrior: {},
     fighter: {
         abilities: [
             {
@@ -342,6 +460,36 @@ const classes = {
             },
         ],
         proficiencies: ['disguise kit', 'poisoner\'s kit'],
+    },
+    mastermind: {
+        abilities: [
+            {
+                name: 'Master of Intrigue',
+                description: 'You gain proficiency with the disguise kit, the forgery kit, and one gaming set of your choice. You also learn two languages of your choice. Additionally, you can unerringly mimic the speech patterns and accent of a creature that you hear speak for at least 1 minute, enabling you to pass yourself off as a native speaker of a particular land, provided that you know the language.',
+                requiredLevel: 3,
+            },
+            {
+                name: 'Master of Tactics',
+                description: 'You can use the Help action as a bonus action. Additionally, when you use the Help action to aid an ally in attacking a creature, the target of that attack can be within 30 feet of you, rather than 5 feet of you, if the target can see or hear you.',
+                requiredLevel: 3,
+            },
+            {
+                name: 'Insightful Manipulator', 
+                description: 'If you spend at least 1 minute observing or interacting with another creature outside combat, you can learn certain information about its capabilities compared to your own. The DM tells you if the creature is your equal, superior, or inferior in regard to two of the following characteristics of your choice: Intelligence, Wisdom, Charisma, Class levels (if any). At the DM\'s option, you might also realize you know a piece of the creature\'s history or one of its personality traits, if it has any.',
+                requiredLevel: 9,
+            },
+            {
+                name: 'Misdirection',
+                description: 'You can sometimes cause another creature to suffer an attack meant for you. When you are targeted by an attack while a creature within 5 feet of you is granting you cover against that attack, you can use your reaction to have the attack target that creature instead of you.',
+                requiredLevel: 13,
+            },
+            {
+                name: 'Soul of Deceit',
+                description: 'your thoughts can\'t be read by telepathy or other means, unless you allow it. You can present false thoughts by making a Charisma (Deception) check contested by the mind reader\'s Wisdom (Insight) check. Additionally, no matter what you say, magic that would determine if you are telling the truth indicates you are being truthful if you so choose, and you can\'t be compelled to tell the truth by magic.', 
+                requiredLevel: 17,
+            },
+        ],
+        proficiencies: ['disguise kit', 'forgery kit', 'one additional gaming set', 'two additional languages'], 
     },
     ranger: {},
     artificer: {},
