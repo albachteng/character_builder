@@ -15,10 +15,6 @@ class Rogue extends Character {
         this.languages.push('thieves\' cant');
         this.sneakAttack = 1; // the number of d6 you get to roll on a sneak attack
     } // end of constructor
-    setArchetype(archetype) {
-        super.setArchetype(archetype); 
-        return this.archetype;
-    }
     levelUp() {
         this.level++;
         this.HP.hitDice++;
@@ -47,15 +43,15 @@ class Rogue extends Character {
 const lem = new Rogue("Lem", 'goblin', 'none', 12, 18, 14, 16, 15, 11);
 // console.log(lem.getAbilities());
 // console.log(lem.showCharacter());
-// lem.chooseSkills('insight', 'deception', 'acrobatics', 'sleight of hand');
-// lem.levelUp();
-// lem.levelUp();
-// lem.levelUp();
-// lem.levelUp();
-// lem.levelUp();
-// lem.levelUp();
-// lem.levelUp();
-// lem.levelUp();
-// lem.levelUp();
-// console.log(lem.setArchetype('mastermind'));
-// console.log(lem.abilities);
+lem.chooseSkills('insight', 'deception', 'acrobatics', 'sleight of hand');
+lem.levelUp();
+lem.levelUp();
+lem.levelUp();
+lem.levelUp();
+lem.levelUp();
+lem.levelUp();
+lem.levelUp();
+lem.levelUp();
+lem.levelUp();
+console.log(lem.setArchetype('mastermind'));
+console.log(lem.abilities);

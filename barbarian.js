@@ -16,6 +16,8 @@ class Barbarian extends Character{
         if (this.archetype === 'beserker') {
             this.abilities.push(...classes.beserker.abilities);
         }
-
     }
 }
+
+const ulrach = new Barbarian('Ulrach', 'minotaur', 'none', 18, 14, 16, 12, 12, 10);
+console.log(ulrach.showCharacter());
