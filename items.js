@@ -760,6 +760,72 @@ const net = new Weapon(
     ['thrown: 5/15', 'special: a large or smaller creature hit with this weapon is restrained until freed with a DC10 STR check.'],
 );
 
+// equipment packs
+const equipmentPacks = {
+    burglarsPack: {
+        price: 16,
+        contents: [backpack, ballBearings, 
+            '10 feet of string', bell,
+            ...multiply(candle, 5), crowbar, 
+            hammer, ...multiply(piton, 10), 
+            hoodedLantern, ...multiply(oil, 2), 
+            ...multiply(rations, 5), tinderbox, 
+            waterskin, rope,
+        ],
+    },
+    diplomatsPack: {
+        price: 39,
+        contents: [
+            chest, ...multiply(caseScroll, 2),
+            fineClothes, ink, inkPen, lamp,
+            ...multiply(oil, 2), ...multiply(paper, 5), 
+            perfume, sealingWax, soap,
+        ],
+    } ,
+    dungeoneersPack: {
+        price: 12,
+        contents: [
+            backpack, crowbar, hammer, 
+            ...multiply(piton, 10), ...multiply(torch, 10),
+            tinderbox, multiply(rations, 10), waterskin, 
+            rope,
+        ],
+    },
+    entertainersPack: {
+        price: 40,
+        contents: [
+            backpack, bedroll, ...multiply(costumeClothes, 2),
+            ...multiply(candle, 5), ...multiply(rations, 5),
+            waterskin, disguiseKit,
+        ],
+    }, 
+    explorersPack: {
+        price: 10,
+        contents: [
+            backpack, bedroll, messKit, tinderbox, 
+            ...multiply(torch, 10), ...multiply(rations, 10),
+            waterskin, rope,
+        ],
+    },
+    priestsPack: {
+        price: 19,
+        contents: [
+            backpack, blanket, ...multiply(candle, 10),
+            tinderbox, 'alms box', '2 blocks of incense',
+            'censer', 'vestaments', ...multiply(rations, 2),
+            waterskin, 
+        ],
+    },
+    scholarsPack: {
+        price: 40,
+        contents: [
+            backpack, book, ink, inkPen, 
+            ...multiply(parchment, 10), 
+            'bag of sand', 'small knife',
+        ], 
+    },
+}
+
 // the armory object, to be exported 
 const armory = {
     weapons: {
@@ -834,71 +900,32 @@ const armory = {
     vehicles: {
         galley, keelboat, longship, rowboat, sailingShip, warship,
     },
+    equipmentPacks: {...equipmentPacks},
+    tradeGoods: { // name: standard price per pound
+        wheat: .01,
+        flour: .02, 
+        chickens: .02, // per live animal
+        salt: .05, 
+        iron: .1, 
+        canvas: .1, // per square yard
+        copper: .5,
+        cotton: .5, // per square yard
+        ginger: 1, 
+        goats: 1, // per live animal
+        cinnamon: 2, 
+        pepper: 2, 
+        sheep: 2, // per live animal
+        cloves: 3, 
+        pigs: 3, 
+        silver: 5, 
+        linen: 5, // per square yard
+        silk: 10, // per square yard
+        cows: 10, // per live animal
+        saffron: 15,
+        oxen: 15, // per live animal 
+        gold: 50, 
+        platinum: 500, 
+    },
 }
 
  export default armory;
-
- const equipmentPacks = {
-    burglarsPack: {
-        price: 16,
-        contents: [backpack, ballBearings, 
-            '10 feet of string', bell,
-            ...multiply(candle, 5), crowbar, 
-            hammer, ...multiply(piton, 10), 
-            hoodedLantern, ...multiply(oil, 2), 
-            ...multiply(rations, 5), tinderbox, 
-            waterskin, rope,
-        ],
-    },
-    diplomatsPack: {
-        price: 39,
-        contents: [
-            chest, ...multiply(caseScroll, 2),
-            fineClothes, ink, inkPen, lamp,
-            ...multiply(oil, 2), ...multiply(paper, 5), 
-            perfume, sealingWax, soap,
-        ],
-    } ,
-    dungeoneersPack: {
-        price: 12,
-        contents: [
-            backpack, crowbar, hammer, 
-            ...multiply(piton, 10), ...multiply(torch, 10),
-            tinderbox, multiply(rations, 10), waterskin, 
-            rope,
-        ],
-    },
-    entertainersPack: {
-        price: 40,
-        contents: [
-            backpack, bedroll, ...multiply(costumeClothes, 2),
-            ...multiply(candle, 5), ...multiply(rations, 5),
-            waterskin, 'disguiseKit',
-        ],
-    }, 
-    explorersPack: {
-        price: 10,
-        contents: [
-            backpack, bedroll, messKit, tinderbox, 
-            ...multiply(torch, 10), ...multiply(rations, 10),
-            waterskin, rope,
-        ],
-    },
-    priestsPack: {
-        price: 19,
-        contents: [
-            backpack, blanket, ...multiply(candle, 10),
-            tinderbox, 'alms box', '2 blocks of incense',
-            'censer', 'vestaments', ...multiply(rations, 2),
-            waterskin, 
-        ],
-    },
-    scholarsPack: {
-        price: 40,
-        contents: [
-            backpack, book, ink, inkPen, 
-            ...multiply(parchment, 10), 
-            'bag of sand', 'small knife',
-        ], 
-    },
-}

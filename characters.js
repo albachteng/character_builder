@@ -22,6 +22,7 @@ class Character {
         this.encumberance = 0; // initialize to zero;
         this.resistances = []; // empty array of strings
         this.archetype = '';
+        this.wallet = 0;
         this.HP = { // the HP object, keeps all the related ideas together
             current: 0,
             max: 0,

@@ -34,6 +34,11 @@ class Barbarian extends Character{
             this.rages = 100;
         }
     }
+    startingWealth(){
+        let gold = (dice.d(4) + dice.d(4)) * 10;
+        this.wallet += gold;
+        return gold;
+    }
 }
 
 

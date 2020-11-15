@@ -25,6 +25,15 @@ const dice = {
     mod: (stat) => { // takes an abilityScore stat and returns a modifier
         return Math.floor((stat - 10) / 2);
     },
+    repeat: (num, die) => {
+        let total = 0;
+        for (let i = 0; i < num; i++) {
+            total += dice.d(die);
+        }
+        return total;
+    }
 }
 
 export default dice;
+
+// console.log(dice.repeat(6, 6));

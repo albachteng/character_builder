@@ -48,6 +48,11 @@ class Fighter extends Character {
             this.superiorityDice.type = 12;
         }
     }
+    startingWealth(){
+        let gold = (dice.d(4) + dice.d(4) + dice.d(4) + dice.d(4) + dice.d(4)) * 10;
+        this.wallet += gold;
+        return gold;
+    }
     addFightingStyle(fightingStyle) {
         switch(fightingStyle) {
             case 'Archery': 

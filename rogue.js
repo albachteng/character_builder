@@ -22,6 +22,9 @@ class Rogue extends Character {
         }
         // need to add to sneakAttack dice for each other level
     }
+    startingWealth() {
+        
+    }
     chooseSkills() { // add skills to proficiencies if they are on the class list
         for (let i = 0; i < arguments.length; i++) {
             for (let j = 0; j < classes.rogue.skills.length; ++j) {
