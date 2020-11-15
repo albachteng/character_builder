@@ -38,6 +38,10 @@ class Character {
             CHA: CHA,
         };
         this.AC = 10 + dice.mod(this.abilityScore.DEX); // partly determined by items; w/out armor or shield 10+DEX
+        this.isWearingArmor = false;
+        this.isShieldEquipped = false;
+        this.leftHand = false;
+        this.rightHand = false;
         this.race = race; // string
         this.subrace = subrace;
 
@@ -230,34 +234,46 @@ class Character {
     }
     attack(weapon, stat, twoHand) {
         let modifier = dice.mod(this.abilityScore[stat]);
-        let attackRoll = dice.d(20);
-        console.log(`modifier = ${modifier}`);
-        console.log(`attack roll = ${attackRoll}`);
-        if (weapon.properties.includes('versatile') && attackRoll === 20 && twoHand) {
-            return [attackRoll + modifier, 2 * (weapon.twoHandAttack() + modifier)];
-        } else if (weapon.properties.includes('versatile') && attackRoll !== 20 && twoHand) {
+        let rawAttackRoll = dice.d(20);
+        let attackRoll = rawAttackRoll;
+        if (this.proficiencies.includes(weapon.name)) {
+            attackRoll += this.proficiencyBonus;
+        }
+        if (rawAttackRoll === 1) {
+            return 'critical failure';
+        } else if (weapon.properties.includes('versatile') && rawAttackRoll === 20 && twoHand) {
+            return [attackRoll + modifier, 2 * (weapon.twoHandAttack() + modifier), 'critical hit'];
+        } else if (weapon.properties.includes('versatile') && rawAttackRoll !== 20 && twoHand) {
             return [attackRoll + modifier, weapon.twoHandAttack() + modifier];
-        } else if (attackRoll === 20 && !twoHand) {
+        } else if (rawAttackRoll === 20 && !twoHand) {
             return [attackRoll + modifier, 2 * (weapon.attack() + modifier)];
         } else {
             return [attackRoll + modifier, weapon.attack() + modifier];
         }
     }
     equip(armor) {
-        let dexMod = dice.mod(this.abilityScore.DEX);
+        let dex = dice.mod(this.abilityScore.DEX);
         if (armor.strength > this.abilityScore.STR) {
             return 'Insufficient strength.';
         } else if (armor.type === 'light') {
-            this.AC = armor.AC + dexMod;
+            this.AC = armor.AC + dex;
+            this.isWearingArmor = true;
         } else if (armor.type === 'medium') {
-            if (dexMod > 2) {
+            if (dex > 2) {
                 this.AC = armor.AC + 2;
-            } else if (dexMod <= 2) {
-                this.AC = armor.AC + dexMod;
+                this.isWearingArmor = true;
+            } else if (dex <= 2) {
+                this.AC = armor.AC + dex;
+                this.isWearingArmor = true;
             }
         } else if (armor.type === 'heavy') {
             this.AC = armor.AC;
+            this.isWearingArmor = true;
         } else if (armor.type === 'shield') {
+            this.isShieldEquipped = true;
+            this.leftHand = true;
+        }
+        if (this.isShieldEquipped) {
             this.AC += 2;
         }
         return this.AC;
@@ -269,6 +285,7 @@ class Character {
 export default Character;
 
 // const isho = new Character("Isho", 'dragonborn', 'red', 17, 14, 15, 5, 9, 13);
+// isho.equip(armory.armor.shield);
 // isho.equip(armory.armor.scaleMail);
 // console.log(isho.showCharacter());
 
