@@ -973,5 +973,4 @@ armory.multiply = function(item, number) {
  export default armory;
 
  // test
-
 //  console.log(armory.multiply(dagger, 3));

@@ -37,7 +37,7 @@ class Ranger extends Character {
         this.HP.max += 10 + dice.mod(this.abilityScore.CON);
         this.savingThrows.push('STR','DEX');
         this.proficiencies.push(...classes.ranger.proficiencies);
-        this.abilities.push(...classes.range.abilities);
+        this.abilities.push(...classes.ranger.abilities);
     }// end of constructor
     addFightingStyle(fightingStyle) {
         switch(fightingStyle) {

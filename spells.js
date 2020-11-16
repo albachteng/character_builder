@@ -135,16 +135,31 @@ const spellbook = {
         ninth: [],
     },
     artificer: {
-        cantrip: [], 
-        first: [],
-        second: [],
-        third: [],
-        fourth: [],
-        fifth: [],
-        sixth: [],
-        seventh: [],
-        eighth: [],
-        ninth: [],
+        cantrip: [
+            // mending,
+        ], 
+        first: [
+            // alarm, cureWounds, disguiseSelf, expeditiousRetreat, 
+            // falseLife, jump, longstrider, sanctuary, shieldOfFaith
+        ],
+        second: [
+            // aid, alterSelf, arcaneLock, blur, continualFlame, 
+            // darkvision, enhanceAbility, enlargeReduce, invisibility,
+            // lesserRestoration, levitate, magicWeapon,
+            // protectionFromPoison, ropeTrick, seeInvisibility,
+            // spiderClimb,
+        ],
+        third: [
+            // blink, fly, gaseousForm, glyphOfWarding,
+            // haste, protectionFromEnergy, revivify, 
+            // waterBreathing, waterWalk,
+        ],
+        fourth: [
+            // arcaneEye, deathWard, fabricate, freedomOfMovement, 
+            // leomundsSecretChest, mordenkainensFaithfulHound, 
+            // mordenkainensPrivateSanctum, otilukesResilientSphere,
+            // stoneShape, stoneskin,
+        ],
     }, 
 };
 

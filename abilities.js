@@ -582,7 +582,195 @@ const classes = {
             'perception', 'stealth', 'survival',
         ], 
     },
-    artificer: {},
+    artificer: {
+        abilities: [
+            {
+                name: 'Magic Item Analysis',
+                description: 'Your understanding of magic items allows you to analyze andunderstand their secrets. You know the artificer spells detect magic and identify, and you can cast them as rituals. You don’t need to provide a material component when casting identify with this class feature.', 
+                requiredLevel: 1, 
+            },
+            {
+                name: 'Tool Expertise',
+                description: 'Your proficiency bonus is doubled for any ability check you make that uses any of the tool proficiencies you gain from this class.', 
+                requiredLevel: 2, 
+            },
+            {
+                name: 'Wondrous Invention',
+                description: 'You gain the use of a magic item that you have crafted. Crafting an item is a difficult task. When you gain a magic item from this feature, it reflects long hours of study, tinkering, and experimentation that allowed you to finally complete the item. You are assumed to work on this item in your leisure time and to finish it when you level up. You complete another item of your choice when you reach certain levels in this class. 5th, 10th, 15th, and 20th level.', 
+                requiredLevel: 2, 
+            },
+            {
+                name: 'Wondrous Invention 2',
+                description: 'You gain the use of an additional magic item that you have crafted.', 
+                requiredLevel: 5, 
+            },
+            {
+                name: 'Wondrous Invention 3',
+                description: 'You gain the use of an additional magic item that you have crafted.', 
+                requiredLevel: 10, 
+            },
+            {
+                name: 'Wondrous Invention 4',
+                description: 'You gain the use of an additional magic item that you have crafted.', 
+                requiredLevel: 15, 
+            },
+            {
+                name: 'Wondrous Invention 5',
+                description: 'You gain the use of an additional magic item that you have crafted.', 
+                requiredLevel: 20, 
+            },
+            {
+                name: 'Infuse Magic',
+                description: 'You gain the ability to channel your artificer spells into objects for later use. When you cast an artificer spell with a casting time of 1 action, you can increase its casting time to 1 minute. If you do so and hold a nonmagical item throughout the casting, you expend a spell slot, but none of the spell’s effects occur. Instead, the spell transfers into that item for later use if the item doesn’t already contain a spell from this feature. Any creature holding the item thereafter can use an action to activate the spell if the creature has an Intelligence score of at least 6. The spell is cast using your spellcasting ability, targeting the creature that activates the item. If the spell targets more than one creature, the creature that activates the item selects the additional targets. If the spell has an area of effect, it is centered on the item. If the spell’s range is self, it targets the creature that activates the item. When you infuse a spell in this way, it must be used within 8 hours. After that time, its magic fades and is wasted. You can have a limited number of infused spells at the same time. The number equals your Intelligence modifier.', 
+                requiredLevel: 4, 
+            },
+            {
+                name: 'Superior Attunement',
+                description: 'Your superior understanding of magic items allows you to master their use. You can now attune to up to four, rather than three, magic items at a time.', 
+                requiredLevel: 5, 
+            },
+            {
+                name: 'Superior Attunement 2',
+                description: 'You can now attune to up to five magic items at a time.', 
+                requiredLevel: 15, 
+            },
+            {
+                name: 'Mechanical Servant',
+                description: 'Your research and mastery of your craft allow you to produce a mechanical servant. The servant is a construct that obeys your commands without hesitation and functions in combat to protect you. Though magic fuels its creation, the servant is not magical itself. You are assumed to have been working on the servant for quite some time, finally finishing it during a short or long rest after you reach 6th level.', 
+                requiredLevel: 6, 
+            },
+            {
+                name: 'Soul of Artifice',
+                description: 'Your understanding of magic items is unmatched, allowing you to mingle your soul with items linked to you. You can attune to up to six magic items at once. In addition, you gain a +1 bonus to all saving throws per magic item you are currently attuned to.', 
+                requiredLevel: 20, 
+            },
+
+        ], 
+        proficiencies: [
+            'light armor', 'medium armor', 'club', 
+            'dagger', 'greatclub', 
+            'handaxe', 'javelin', 'light hammer', 
+            'mace', 'quarterstaff', 'sickle',
+            'spear', 'light crossbow', 'dart',
+            'shortbow', 'sling', 'lightCrossbow', 
+            'dart', 'shortbow', 'sling', 
+            'thieves\'s tools', 'two additional tools', 
+        ],
+        skills: [
+            'arcana', 'deception', 'history', 'investigation', 
+            'medicine', 'nature', 'religion', 'sleight of hand',
+        ], 
+    },
+    alchemist: {
+        abilities: [
+            {
+                name: 'Alchemist\'s Satchel',
+                description: 'At 1st level, you craft an Alchemist’s Satchel, a bag of reagents that you use to create a variety of concoctions. The bag and its contents are both magical, and this magic allows you to pull out exactly the right materials you need for your Alchemical Formula options, described below. After you use one of those options, the bag reclaims the materials. If you lose this satchel, you can create a new one over the course of three days of work (eight hours each day) by expending 100 gp worth of leather, glass, and other raw materials.',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Alchemical Formula',
+                description: 'You learn three Alchemical Formula options: Alchemical Fire, Alchemical Acid, and one other option of your choice. To use any of these options, your Alchemist’s Satchel must be within reach. If an Alchemical Formula option requires a saving throw, the DC is 8 + your proficiency bonus + your Intelligence modifier.',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Alchemical Formula', 
+                description: 'You learn an additional alchemical formula of your choice. 9th, 14th, and 17th levels. ',
+                requiredLevel: 3,
+            },
+            {
+                name: 'Alchemical Formula', 
+                description: 'You learn an additional alchemical formula of your choice. 9th, 14th, and 17th levels. ',
+                requiredLevel: 9,
+            },
+            {
+                name: 'Alchemical Formula', 
+                description: 'You learn an additional alchemical formula of your choice. 9th, 14th, and 17th levels. ',
+                requiredLevel: 14,
+            },
+            {
+                name: 'Alchemical Formula', 
+                description: 'You learn an additional alchemical formula of your choice. 9th, 14th, and 17th levels. ',
+                requiredLevel: 17,
+            },
+        ],
+        proficiencies: [], 
+        formulae: [
+            {
+                name: 'Alchemical Fire', 
+                description: 'As an action, you can reach into your Alchemist’s Satchel, pull out a vial of volatile liquid, and hurl the vial at a creature, object, or surface within 30 feet of you (the vial and its contents disappear if you don’t hurl the vial by the end of the current turn). On impact, the vial detonates in a 5-foot radius. Any creature in that area must succeed on a Dexterity saving throw or take 1d6 fire damage. This formula’s damage increases by 1d6 when you reach certain levels in this class: 4th level (2d6), 7th level (3d6), 10th level (4d6), 13th level (5d6), 16th level (6d6), and 19th level (7d6).',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Alchemical Acid', 
+                description: 'As an action, you can reach into your Alchemist’s Satchel, pull out a vial of acid, and hurl the vial at a creature or object within 30 feet of you (the vial and its contents disappear if you don’t hurl the vial by the end of the current turn). The vial shatters on impact. A creature must succeed on a Dexterity saving throw or take 1d6 acid damage. An object automatically takes that damage, and the damage is maximized. This formula’s damage increases by 1d6 when you reach certain levels in this class: 3rd level (2d6), 5th level (3d6), 7th level (4d6), 9th level (5d6), 11th level (6d6), 13th level (7d6), 15th level (8d6), 17th level (9d6), and 19th level (10d6).',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Healing Draught', 
+                description: 'As an action, you can reach into your Alchemist’s Satchel and pull out a vial of healing liquid. A creature can drink it as an action to regain 1d8 hit points. The vial then disappears. Once a creature regains hit points from this alchemical formula, the creature can’t do so again until it finishes a long rest. If not used, the vial and its contents disappear after 1 hour. While the vial exists, you can’t use this formula. This formula’s healing increases by 1d8 when you reach certain levels in this class: 3rd level (2d8), 5th level (3d8), 7th level (4d8), 9th level (5d8), 11th level (6d8), 13th level (7d8), 15th level (8d8), 17th level (9d8), and 19th level (10d8).',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Smoke Stick', 
+                description: 'As an action, you can reach into your Alchemist’s Satchel and pull out a stick that produces a thick plume of smoke. You can hold on to the stick or throw it to a point up to 30 feet away as part of the action used to produce it. The area in a 10-foot radius around the stick is filled with thick smoke that blocks vision, including darkvision. The stick and smoke persist for 1 minute and then disappear. After using this formula, you can’t do so again for 1 minute.',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Swift Step Draught', 
+                description: 'As a bonus action, you can reach into your Alchemist’s Satchel and pull out a vial filled with a bubbling, brown liquid. As an action, a creature can drink it. Doing so increases the creature’s speed by 20 feet for 1 minute, and the vial disappears. If not used, the vial and its contents disappear after 1 minute. After using this formula, you can’t do so again for 1 minute.',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Tanglefoot Bag', 
+                description: 'As an action, you can reach into your Alchemist’s Satchel and pull out a bag filled with writhing, sticky black tar and hurl it at a point on the ground within 30 feet of you (the bag and its contents disappear if you don’t hurl the bag by the end of the current turn). The bag bursts on impact and covers the ground in a 5- foot radius with sticky goo. That area becomes difficult terrain for 1 minute, and any creature that starts its turn on the ground in that area has its speed halved for that turn. After using this formula, you can’t do so again for 1 minute.',
+                requiredLevel: 1,
+            },
+            {
+                name: 'Thunderstone', 
+                description: 'As an action, you can reach into your Alchemist’s Satchel and pull out a crystalline shard and hurl it at a creature, object, or surface within 30 feet of you (the shard disappears if you don’t hurl it by the end of the current turn). The shard shatters on impact with a blast of concussive energy. Each creature within 10 feet of the point of impact must succeed on a Constitution saving throw or be knocked prone and pushed 10 feet away from that point.',
+                requiredLevel: 1,
+            },
+        ], 
+    },
+    gunsmith: {
+        abilities: [
+            {
+                name: 'Thunder Cannon', 
+                description: 'You forge a deadly firearm using a combination of arcane magic and your knowledge of engineering and metallurgy. This firearm is called a Thunder Cannon. It is a ferocious weapon that fires leaden bullets that can punch through armor with ease. You are proficient with the Thunder Cannon. The firearm is a two-handed ranged weapon that deals 2d6 piercing damage. Its normal range is 150 feet, and its maximum range if 500 feet. Once fired, it must be reloaded as a bonus action. If you lose your Thunder Cannon, you can create a new one over the course of three days of work (eight hours each day) by expending 100 gp worth of metal and other raw materials.', 
+                level: 1,
+            },
+            {
+                name: 'Arcane Magazine', 
+                description: 'You craft a leather bag used to carry your tools and ammunition for your Thunder Cannon. Your Arcane Magazine includes the powders, lead shot, and other materials needed to keep that weapon functioning. You can use the Arcane Magazine to produce ammunition for your gun. At the end of each long rest, you can magically produce 40 rounds of ammunition with this magazine. After each short rest, you can produce 10 rounds. If you lose your Arcane Magazine, you can create a new one as part of a long rest, using 25 gp of leather and other raw materials.', 
+                level: 1,
+            },
+            {
+                name: 'Thunder Monger', 
+                description: 'You learn to channel thunder energy into your Thunder Cannon. As an action, you can make a special attack with your Thunder Cannon that deals an extra 1d6 thunder damage on a hit. This extra damage increases by 1d6 when you reach certain levels in this class: 5th level (2d6), 7th level (3d6), 9th level (4d6), 11th level (5d6), 13th level (6d6), 15th level (7d6), 17th level (8d6), and 19th level (9d6).', 
+                level: 3,
+            },
+            {
+                name: 'Blast Wave', 
+                description: 'You can channel force energy into your Thunder Cannon. As an action, you can make a special attack with it. Rather than making an attack roll, you unleash force energy in a 15-foot cone from the gun. Each creature in that area must make a Strength saving throw with a DC of 8 + your proficiency bonus + your Intelligence modifier. On a failed saving throw, a target takes 2d6 force damage and is pushed 10 feet away from you. This damage increases by 1d6 when you reach certain levels in this class: 13th level (3d6) and 17th level (4d6).', 
+                level: 9,
+            },
+            {
+                name: 'Piercing Round', 
+                description: 'Starting at 14th level, you can shoot lightning energy through your Thunder Cannon. As an action, you can make a special attack with it. Rather than making an attack roll, you cause the gun to unleash a bolt of lightning, 5-feet wide and 30-feet long. Each creature in that area must make Dexterity saving throws with a DC of 8 + your proficiency bonus + your Intelligence modifier. On a failed saving throw, a target takes 4d6 lightning damage. This damage increases to 6d6 when you reach 19th level in this class.', 
+                level: 14,
+            },
+            {
+                name: 'Explosive Round', 
+                description: 'You can channel fiery energy into your Thunder Cannon. As an action, you can make a special attack with it. Rather than making an attack roll, you launch an explosive round from the gun. The round detonates in a 30-foot radius sphere at a point within range. Each creature in that area must make a Dexterity saving throw with a DC of 8 + your proficiency bonus + your Intelligence modifier. On a failed saving throw, a target takes 4d8 fire damage.', 
+                level: 17,
+            },
+        ], 
+        proficiencies: [
+            'smith\'s tools', 
+        ], 
+        spells: ['mending cantrip'],   
+    },
 }
 
 export default classes;
