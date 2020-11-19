@@ -1,0 +1,14 @@
+{
+  "name": "dnd",
+  "version": "1.0.0",
+  "description": "character builder",
+  "main": "abilities.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "graham albachten",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^8.2.1"
+  }
+}

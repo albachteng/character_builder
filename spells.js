@@ -1,15 +1,15 @@
 class Spell {
     constructor(name, level, school, ritual, time, range, components, duration, concentration, description) {
         this.name = name; 
-        this.level = level;
-        this.school = school;
-        this.ritual = ritual; 
-        this.time = time; // either action, bonus action, reaction or string
-        this.range = range;
-        this.components = components;
-        this.duration = duration; 
-        this.concentration = concentration;
-        this.description = description;
+        this.level = level; // number
+        this.school = school; // string
+        this.ritual = ritual; // true or false
+        this.time = time; // string, typically action, bonus action, reaction or else a more descriptive string
+        this.range = range; // in feet, 0 can mean either self or touch, see description
+        this.components = components; // array includes any or none of the strings verbal, sommatic, material: [...]
+        this.duration = duration; // string
+        this.concentration = concentration; // true or false
+        this.description = description; // string
     }
 }
 
