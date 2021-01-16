@@ -39,7 +39,7 @@ class Ranger extends Character {
         this.proficiencies.push(...classes.ranger.proficiencies);
         this.abilities.push(...classes.ranger.abilities);
     }// end of constructor
-    addFightingStyle(fightingStyle) {
+    addFightingStyle(fightingStyle) { // NTS I think 
         switch(fightingStyle) {
             case 'Archery': 
             this.abilities.push(

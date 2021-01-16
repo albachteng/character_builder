@@ -13,6 +13,8 @@ class Spell {
     }
 }
 
+// first level spells
+
 const alarm = new Spell(
     'Alarm', 1, 'abjuration', true, 
     '1 minute', 30, ['verbal', 'somatic', 'material: a tiny bell and a piece of fine silver wire',], '8 hours', false,
@@ -96,6 +98,8 @@ const x = new Spell(
     'action', 0, ['verbal', 'somatic', 'material: ',], '10 minutes', true,
     'description'
 );
+
+// spellbook for export
 
 const spellbook = {
     ranger: {
